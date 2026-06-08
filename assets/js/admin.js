@@ -119,17 +119,72 @@ const Admin = {
         `;
     },
 
+    renderToolbar(targetId) {
+        return `
+            <div class="btn-group btn-group-sm mb-1">
+                <button type="button" class="btn btn-outline-secondary" title="Bold" onclick="Admin.insertTag('${targetId}', 'b')"><i class="fas fa-bold"></i></button>
+                <button type="button" class="btn btn-outline-secondary" title="Italic" onclick="Admin.insertTag('${targetId}', 'i')"><i class="fas fa-italic"></i></button>
+                <button type="button" class="btn btn-outline-secondary" title="Highlight Primary" onclick="Admin.insertTag('${targetId}', 'span', 'text-primary')"><i class="fas fa-paint-brush text-primary"></i></button>
+                <button type="button" class="btn btn-outline-secondary" title="Highlight Accent" onclick="Admin.insertTag('${targetId}', 'span', 'text-accent')"><i class="fas fa-paint-brush text-warning"></i></button>
+                <div class="btn btn-outline-secondary p-0 d-flex align-items-center justify-content-center" style="width: 32px; position: relative;" title="เลือกสีเอง">
+                    <i class="fas fa-palette" style="font-size: 10px;"></i>
+                    <input type="color" style="position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer;" onchange="Admin.insertColor('${targetId}', this.value)">
+                </div>
+                <button type="button" class="btn btn-outline-secondary" title="New Line" onclick="Admin.insertText('${targetId}', '<br>')"><i class="fas fa-level-down-alt"></i></button>
+            </div>
+        `;
+    },
+
+    insertColor(id, color) {
+        const el = document.getElementById(id);
+        const start = el.selectionStart;
+        const end = el.selectionEnd;
+        const selectedText = el.value.substring(start, end);
+        const replacement = `<span style="color: ${color}">${selectedText}</span>`;
+        el.value = el.value.substring(0, start) + replacement + el.value.substring(end);
+        el.focus();
+        const newCursorPos = start + replacement.length;
+        el.setSelectionRange(newCursorPos, newCursorPos);
+    },
+
+    insertTag(id, tag, className = '') {
+        const el = document.getElementById(id);
+        const start = el.selectionStart;
+        const end = el.selectionEnd;
+        const selectedText = el.value.substring(start, end);
+        const replacement = `<${tag}${className ? ' class="' + className + '"' : ''}>${selectedText}</${tag}>`;
+        el.value = el.value.substring(0, start) + replacement + el.value.substring(end);
+        el.focus();
+        const newCursorPos = start + replacement.length;
+        el.setSelectionRange(newCursorPos, newCursorPos);
+    },
+
+    insertText(id, text) {
+        const el = document.getElementById(id);
+        const start = el.selectionStart;
+        const end = el.selectionEnd;
+        el.value = el.value.substring(0, start) + text + el.value.substring(end);
+        el.focus();
+        el.setSelectionRange(start + text.length, start + text.length);
+    },
+
     renderMultilingual(label, idPrefix, data, isTextarea = false) {
         return `
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label class="fw-bold small mb-1">${label} (TH)</label>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="fw-bold small mb-1">${label} (TH)</label>
+                        ${this.renderToolbar(idPrefix + '_th')}
+                    </div>
                     ${isTextarea ? 
                         `<textarea class="form-control" id="${idPrefix}_th" rows="3">${data?.th || ''}</textarea>` : 
                         `<input type="text" class="form-control" id="${idPrefix}_th" value="${data?.th || ''}">`}
                 </div>
                 <div class="col-md-6">
-                    <label class="fw-bold small mb-1">${label} (EN)</label>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <label class="fw-bold small mb-1">${label} (EN)</label>
+                        ${this.renderToolbar(idPrefix + '_en')}
+                    </div>
                     ${isTextarea ? 
                         `<textarea class="form-control" id="${idPrefix}_en" rows="3">${data?.en || ''}</textarea>` : 
                         `<input type="text" class="form-control" id="${idPrefix}_en" value="${data?.en || ''}">`}

@@ -57,7 +57,7 @@ const App = {
         Object.keys(ui).forEach(key => {
             const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
             elements.forEach(el => {
-                el.innerText = I18n.getLocalizedText(ui[key]);
+                el.innerHTML = I18n.getLocalizedText(ui[key]);
             });
         });
     },
@@ -108,8 +108,8 @@ const App = {
         const titleEl = document.querySelector('#hero-title');
         const descEl = document.querySelector('#hero-desc');
         
-        if (titleEl) titleEl.innerText = I18n.getLocalizedText(h.title);
-        if (descEl) descEl.innerText = I18n.getLocalizedText(h.desc);
+        if (titleEl) titleEl.innerHTML = I18n.getLocalizedText(h.title);
+        if (descEl) descEl.innerHTML = I18n.getLocalizedText(h.desc);
     },
 
     renderAbout() {
@@ -117,10 +117,10 @@ const App = {
         if (!a) return;
         
         const sectionTitle = document.querySelector('#about .section-title h2');
-        if (sectionTitle) sectionTitle.innerText = I18n.getLocalizedText(a.title);
+        if (sectionTitle) sectionTitle.innerHTML = I18n.getLocalizedText(a.title);
         
         const descEl = document.querySelector('[data-i18n="about_desc"]');
-        if (descEl) descEl.innerText = I18n.getLocalizedText(a.desc);
+        if (descEl) descEl.innerHTML = I18n.getLocalizedText(a.desc);
         
         const imgEl = document.querySelector('#about img');
         if (imgEl && a.image) imgEl.src = a.image;
@@ -138,7 +138,7 @@ const App = {
         if (!w) return;
         
         const sectionTitle = document.querySelector('#why-us .section-title h2');
-        if (sectionTitle) sectionTitle.innerText = I18n.getLocalizedText(w.title);
+        if (sectionTitle) sectionTitle.innerHTML = I18n.getLocalizedText(w.title);
 
         const container = document.querySelector('#why-us .row');
         if (container && w.items) {
@@ -225,7 +225,7 @@ const App = {
         if (!s) return;
         
         const addrEl = document.querySelector('#contact-address');
-        if (addrEl) addrEl.innerText = I18n.getLocalizedText(s.address);
+        if (addrEl) addrEl.innerHTML = I18n.getLocalizedText(s.address);
         
         document.querySelector('#contact-phone').innerText = s.phone;
         document.querySelector('#contact-email').innerText = s.email;
@@ -239,7 +239,7 @@ const App = {
         const s = this.data.site;
         if (!s) return;
         const footerDesc = document.querySelector('[data-i18n="footer_desc"]');
-        if (footerDesc) footerDesc.innerText = I18n.getLocalizedText(s.footer_desc);
+        if (footerDesc) footerDesc.innerHTML = I18n.getLocalizedText(s.footer_desc);
     },
 
     renderFloatingButtons() {
