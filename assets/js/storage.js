@@ -261,26 +261,17 @@ const Storage = {
 },
 
     async init() {
-        console.log('Storage: Connecting to File System...');
+        console.log('Storage: Syncing with GitHub/Server...');
         try {
-            // Priority 1: Load from permanent file (Source of Truth)
+            // Priority: ALWAYS fetch the latest data from the file
             const response = await fetch('assets/data/content.json?v=' + Date.now());
-            if (!response.ok) throw new Error('File not found');
+            if (!response.ok) throw new Error('Could not load content.json');
             const fileData = await response.json();
             
-            // Check if we have newer unsaved changes in LocalStorage (Optional)
-            const localRaw = localStorage.getItem(STORAGE_KEY);
-            if (localRaw) {
-                console.log('Storage: Local cache found. Using local data for this session.');
-                this.isReady = true;
-                this.onReady.forEach(cb => cb());
-                return;
-            }
-
-            console.log('Storage: Loaded from assets/data/content.json');
-            this.save(fileData);
+            console.log('Storage: Content updated from GitHub/Server.');
+            this.save(fileData); // Overwrite local cache with fresh data from file
         } catch (error) {
-            console.warn('Storage: Cannot reach file, using fallback.', error);
+            console.warn('Storage: Offline or File missing, using local cache.', error);
             if (!localStorage.getItem(STORAGE_KEY)) {
                 this.save(this.fallbackData);
             }
