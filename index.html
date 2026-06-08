@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title class="lang-th">ยูฟิกซ์ เดคอร์ เซอร์วิส | ซ่อมแซมและบำรุงรักษาอาคารครบวงจร</title>
+    <title class="lang-en">Ufix Decor Service | Integrated Building Repair & Maintenance</title>
+    <meta name="description" content="บริการซ่อมแซมอาคาร แก้ไขน้ำรั่วซึม ซ่อมรอยร้าว งานโรยตัวอาคารสูง ทาสีอาคาร และบำรุงรักษาอาคารครบวงจร">
+    
+    <!-- SEO -->
+    <meta property="og:title" content="ยูฟิกซ์ เดคอร์ เซอร์วิส">
+    <meta property="og:description" content="ซ่อมแซมและบำรุงรักษาอาคารครบวงจร">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/UFIXF.jpg" type="image/jpeg">
+    <meta name="theme-color" content="#002E6D">
+</head>
+<body lang="th">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/UFIX.png" alt="Ufix Decor Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">
+                            <span class="lang-th">หน้าแรก</span><span class="lang-en">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">
+                            <span class="lang-th">บริการ</span><span class="lang-en">Services</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#articles">
+                            <span class="lang-th">บทความ</span><span class="lang-en">Articles</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">
+                            <span class="lang-th">ผลงาน</span><span class="lang-en">Portfolio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <span class="lang-th">ติดต่อเรา</span><span class="lang-en">Contact</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-primary btn-lang" onclick="setLanguage('th')">TH</button>
+                            <button class="btn btn-outline-primary btn-lang" onclick="setLanguage('en')">EN</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1920');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <h1 class="display-3 mb-4" data-aos="fade-down">
+                <b><span class="text-accent">
+                    <span class="lang-th">ผู้เชี่ยวชาญด้านงานซ่อมแซมและบำรุงรักษาอาคารครบวงจร</span>
+                    <span class="lang-en">Integrated Building Repair and Maintenance Specialists</span>
+                </span></b>
+            </h1>
+            <p class="lead mb-5" data-aos="fade-up">
+                <span class="lang-th">ดูแล ซ่อมแซม และปรับปรุงอาคารทุกประเภท โดยทีมงานมืออาชีพ</span>
+                <span class="lang-en">Providing professional care, repair, and renovation for all types of buildings.</span>
+            </p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="#contact" class="btn btn-accent btn-lg">
+                    <span class="lang-th">ขอใบเสนอราคา</span><span class="lang-en">Get a Quote</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-5 mb-4" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" class="img-fluid rounded shadow" alt="About Ufix">
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="section-title text-start mb-4">
+                        <h2>
+                            <span class="lang-th">ผู้เชี่ยวชาญด้านงานซ่อมแซมอาคาร และบำรุงรักษาอาคารครบวงจร</span>
+                            <span class="lang-en">Specialists in Building Repair and Integrated Maintenance</span>
+                        </h2>
+                    </div>
+                    <div class="about-text">
+                        <p class="lang-th">อาคารทุกแห่งล้วนเสื่อมสภาพตามกาลเวลา ไม่ว่าจะเป็นปัญหาน้ำรั่วซึม รอยแตกร้าวของผนัง สีภายนอกอาคารที่ซีดจาง หรือวัสดุที่ชำรุดจากการใช้งานและสภาพอากาศ หากปล่อยทิ้งไว้อาจส่งผลกระทบต่อความปลอดภัย ภาพลักษณ์ขององค์กร และก่อให้เกิดค่าใช้จ่ายในการซ่อมแซมที่สูงขึ้นในอนาคต</p>
+                        <p class="lang-en">Every building naturally deteriorates over time, whether it's through water leaks, wall cracks, fading exterior paint, or materials worn down by use and weather conditions. Leaving these issues unaddressed can impact safety, corporate image, and lead to significantly higher repair costs in the future.</p>
+                        
+                        <p class="lang-th"><strong>บริษัท ยูฟิกซ์ เดคอร์ เซอร์วิส</strong> ให้บริการซ่อมแซมและบำรุงรักษาอาคารแบบครบวงจร โดยทีมงานผู้ชำนาญการที่มีประสบการณ์ในงานอาคารสูง งานโรยตัว งานซ่อมรอยร้าว งานแก้ไขปัญหาน้ำรั่วซึม งานทาสีอาคาร และงานปรับปรุงสภาพอาคารทุกประเภท เรามุ่งมั่นในการดำเนินงานด้วยมาตรฐานด้านคุณภาพ ความปลอดภัย และความรับผิดชอบต่อทุกโครงการ</p>
+                        <p class="lang-en"><strong>Ufix Decor Service</strong> provides comprehensive building repair and maintenance services. Our expert team has extensive experience in high-rise building maintenance, rope access, crack repair, waterproofing, painting, and all types of building renovation. We are committed to high standards of quality, safety, and responsibility in every project.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-12">
+                    <div class="p-4 bg-light rounded shadow-sm border-start border-4 border-accent">
+                        <p class="lang-th">ด้วยประสบการณ์ในการให้บริการทั้งอาคารสำนักงาน คอนโดมิเนียม โรงงาน อาคารพาณิชย์ และสถานประกอบการต่าง ๆ เราเข้าใจถึงความต้องการที่แตกต่างของลูกค้าแต่ละราย จึงให้ความสำคัญกับการสำรวจหน้างาน การวิเคราะห์สาเหตุของปัญหา และการนำเสนอแนวทางแก้ไขที่เหมาะสม คุ้มค่า และยั่งยืน</p>
+                        <p class="lang-en">With experience serving office buildings, condominiums, factories, commercial buildings, and various establishments, we understand the unique needs of each client. We prioritize site surveys, problem analysis, and presenting solutions that are appropriate, cost-effective, and sustainable.</p>
+                        
+                        <p class="lang-th">เราเชื่อว่าการซ่อมแซมที่ดีไม่ได้เป็นเพียงการแก้ไขปัญหาเฉพาะหน้า แต่ต้องช่วยยืดอายุการใช้งานของอาคาร ลดค่าใช้จ่ายในการบำรุงรักษาในระยะยาว และสร้างความมั่นใจให้กับเจ้าของอาคารและผู้ใช้งานทุกคน หากคุณกำลังมองหาผู้เชี่ยวชาญด้านการซ่อมแซมและบำรุงรักษาอาคารที่พร้อมให้คำปรึกษาอย่างมืออาชีพ <strong>ยูฟิกซ์ เดคอร์ เซอร์วิส</strong> ยินดีเป็นส่วนหนึ่งในการดูแลอาคารของคุณให้มีความแข็งแรง สวยงาม และพร้อมใช้งานอยู่เสมอ</p>
+                        <p class="lang-en">We believe that quality repair is not just a quick fix, but a way to extend the building's lifespan, reduce long-term maintenance costs, and build confidence for building owners and users. If you are looking for professional building repair and maintenance experts, <strong>Ufix Decor Service</strong> is ready to help keep your building strong, beautiful, and always ready for use.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center" data-aos="fade-up">
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-building fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>งานโรยตัวอาคารสูง</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">Rope Access</h6>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-tint-slash fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>ระบบกันซึม</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">Waterproofing</h6>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-paint-roller fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>งานทาสีอาคาร</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">Painting</h6>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-tools fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>งานปรับปรุงอาคาร</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">Renovation</h6>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-bolt fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>งานระบบอาคาร</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">M&E Systems</h6>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3">
+                    <div class="text-center p-3 border rounded h-100">
+                        <i class="fas fa-th fa-2x text-accent mb-2"></i>
+                        <h6 class="lang-th small mb-0"><b>งานกระเบื้อง & ตกแต่ง</b></h6>
+                        <h6 class="lang-en small text-muted mb-0">Tiling & Interior</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section-bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    <span class="lang-th">บริการของเรา</span><span class="lang-en">Our Services</span>
+                </h2>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                <div class="col" data-aos="fade-up">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="assets/images/rope_access.png" class="card-img-top service-img" alt="งานโรยตัว">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="lang-th">งานโรยตัวอาคารสูง</span><span class="lang-en">Rope Access</span></h5>
+                            <p class="card-text text-muted small">
+                                <span class="lang-th">บริการเช็ดกระจก ทาสี และซ่อมแซมผนังอาคารสูงด้วยทีมงานมืออาชีพที่ผ่านการอบรม</span>
+                                <span class="lang-en">Professional glass cleaning, painting, and high-rise building repair services.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="assets/images/waterproofing.png" class="card-img-top service-img" alt="ระบบกันซึม">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="lang-th">ระบบกันซึมและซ่อมรอยร้าว</span><span class="lang-en">Waterproofing</span></h5>
+                            <p class="card-text text-muted small">
+                                <span class="lang-th">แก้ไขปัญหาน้ำรั่วซึมดาดฟ้า ผนัง และรอยร้าวอาคารด้วยวัสดุมาตรฐานสากล</span>
+                                <span class="lang-en">Fixing roof leaks, walls, and cracks with international standard materials.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="assets/images/portfolio_painting.png" class="card-img-top service-img" alt="งานทาสี">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="lang-th">งานทาสีและรีโนเวท</span><span class="lang-en">Painting & Renovation</span></h5>
+                            <p class="card-text text-muted small">
+                                <span class="lang-th">บริการทาสีอาคารเก่าให้เหมือนใหม่ และปรับปรุงพื้นที่ใช้งานให้ทันสมัย</span>
+                                <span class="lang-en">Professional painting and renovation services to modernize your space.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="assets/images/building_systems.png" class="card-img-top service-img" alt="งานระบบภายในอาคาร">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="lang-th">งานระบบภายในอาคาร</span><span class="lang-en">Building Utility Systems</span></h5>
+                            <p class="card-text text-muted small">
+                                <span class="lang-th">บริการติดตั้งและบำรุงรักษาระบบไฟฟ้า ประปา เครื่องปรับอากาศ และระบบสุขาภิบาลภายในอาคารโดยช่างผู้เชี่ยวชาญ</span>
+                                <span class="lang-en">Installation and maintenance of electrical, plumbing, air conditioning, and sanitary systems.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="card-img-top service-img" alt="งานกระเบื้องและตกแต่งภายใน">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="lang-th">งานกระเบื้องและตกแต่งภายใน</span><span class="lang-en">Tiling & Interior Renovation</span></h5>
+                            <p class="card-text text-muted small">
+                                <span class="lang-th">บริการปูกระเบื้อง รีโนเวทห้องน้ำ ห้องครัว งานตกแต่งภายในเพื่อการใช้สอยที่สวยงามลงตัว</span>
+                                <span class="lang-en">Professional tiling, bathroom/kitchen renovations, and premium interior decoration.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Why Us -->
+    <section id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    <span class="lang-th">ทำไมต้องเลือกเรา</span><span class="lang-en">Why Choose Us</span>
+                </h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="p-4">
+                        <i class="fas fa-hard-hat fa-3x text-accent mb-3"></i>
+                        <h4><span class="lang-th">ทีมงานมืออาชีพ</span><span class="lang-en">Professional Team</span></h4>
+                        <p class="text-muted"><span class="lang-th">ทีมงานวิศวกรและช่างผู้ชำนาญการ</span><span class="lang-en">Expert engineers and technicians</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4">
+                        <i class="fas fa-shield-alt fa-3x text-accent mb-3"></i>
+                        <h4><span class="lang-th">มาตรฐานความปลอดภัย</span><span class="lang-en">Safety Standards</span></h4>
+                        <p class="text-muted"><span class="lang-th">ปลอดภัย 100% ในทุกขั้นตอน</span><span class="lang-en">100% safe in every step</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4">
+                        <i class="fas fa-clock fa-3x text-accent mb-3"></i>
+                        <h4><span class="lang-th">ตรงต่อเวลา</span><span class="lang-en">On Time Delivery</span></h4>
+                        <p class="text-muted"><span class="lang-th">ส่งมอบงานตามกำหนดการที่ชัดเจน</span><span class="lang-en">Delivery according to schedules</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Center / Article -->
+    <section id="articles" class="section-bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    <span class="lang-th">สาระน่ารู้เรื่องอาคาร</span>
+                    <span class="lang-en">Knowledge Center</span>
+                </h2>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Article 1 -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden" data-aos="fade-up">
+                         <img src="assets/images/building_warning.png" class="card-img-top" alt="Building Maintenance" style="height: 240px; object-fit: cover;">
+                        <div class="card-body p-4">
+                            <h4 class="card-title mb-3">
+                                <span class="lang-th">5 สัญญาณเตือนว่าอาคารของคุณควรได้รับการซ่อมแซมโดยด่วน</span>
+                                <span class="lang-en">5 Warning Signs Your Building Needs Urgent Repair</span>
+                            </h4>
+                            <p class="text-muted small mb-4">
+                                <span class="lang-th">การตรวจพบปัญหาตั้งแต่เริ่มต้นจะช่วยลดค่าใช้จ่ายและป้องกันความเสียหายลุกลามจนกระทบโครงสร้างอาคาร</span>
+                                <span class="lang-en">Detecting problems early helps reduce costs and prevents damage from spreading to the building structure.</span>
+                            </p>
+                            
+                            <ul class="list-unstyled small mb-0">
+                                <li class="mb-2"><i class="fas fa-check-circle text-accent me-2"></i> <span class="lang-th">รอยแตกร้าวบนผนังหรือคาน</span><span class="lang-en">Cracks on walls or beams</span></li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-accent me-2"></i> <span class="lang-th">ปัญหาน้ำรั่วซึม คราบเชื้อรา</span><span class="lang-en">Water leakage and mold stains</span></li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-accent me-2"></i> <span class="lang-th">สีอาคารหลุดล่อนเสื่อมสภาพ</span><span class="lang-en">Peeling and deteriorated paint</span></li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-accent me-2"></i> <span class="lang-th">โครงสร้างเหล็กมีสนิม</span><span class="lang-en">Rusted steel structures</span></li>
+                                <li class="mb-0"><i class="fas fa-check-circle text-accent me-2"></i> <span class="lang-th">วัสดุตกแต่งหรือกระเบื้องหลุดร่อน</span><span class="lang-en">Falling tiles or decorative materials</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800" class="card-img-top" alt="Building Laws" style="height: 240px; object-fit: cover;">
+                        <div class="card-body p-4">
+                            <h4 class="card-title mb-3">
+                                <span class="lang-th">กฎหมายการซ่อมแซมอาคารที่เจ้าของควรรู้</span>
+                                <span class="lang-en">Building Repair Regulations: What Owners Should Know</span>
+                            </h4>
+                            <p class="text-muted small mb-4">
+                                <span class="lang-th">ทำความเข้าใจข้อกำหนดทางกฎหมายเพื่อความปลอดภัยและหลีกเลี่ยงปัญหาในการปรับปรุงอาคาร</span>
+                                <span class="lang-en">Understand legal requirements for safety and avoid legal issues during building renovations.</span>
+                            </p>
+                            
+                            <div class="article-summary small">
+                                <p class="mb-2"><strong><i class="fas fa-info-circle text-primary me-2"></i> <span class="lang-th">งานซ่อมแซมทั่วไป:</span><span class="lang-en">General Maintenance:</span></strong> 
+                                    <span class="lang-th">การทาสี เปลี่ยนกระเบื้อง หรือซ่อมฝ้า โดยปกติไม่ต้องขออนุญาต</span>
+                                    <span class="lang-en">Repainting or general repairs usually don't require permits.</span>
+                                </p>
+                                <p class="mb-2"><strong><i class="fas fa-gavel text-primary me-2"></i> <span class="lang-th">การดัดแปลงโครงสร้าง:</span><span class="lang-en">Structural Modification:</span></strong> 
+                                    <span class="lang-th">การรื้อถอนคาน เสา หรือต่อเติมพื้นที่ ต้องยื่นขออนุญาตต่อเจ้าพนักงาน</span>
+                                    <span class="lang-en">Changes to beams, columns, or extensions need official permits.</span>
+                                </p>
+                                <p class="mb-0"><strong><i class="fas fa-user-shield text-primary me-2"></i> <span class="lang-th">ความปลอดภัยบนที่สูง:</span><span class="lang-en">Safety at Height:</span></strong> 
+                                    <span class="lang-th">งานโรยตัวต้องมีมาตรการป้องกันที่เคร่งครัดตามกฎหมายความปลอดภัย</span>
+                                    <span class="lang-en">High-rise work must follow strict safety regulations by law.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up">
+                <p class="lang-th text-muted">ปรึกษาผู้เชี่ยวชาญก่อนเริ่มงานเพื่อให้การซ่อมแซมถูกต้องตามมาตรฐานและกฎหมาย</p>
+                <p class="lang-en text-muted">Consult experts before starting to ensure compliance with standards and laws.</p>
+                <a href="#contact" class="btn btn-accent">
+                    <span class="lang-th">ขอคำปรึกษาฟรี</span><span class="lang-en">Free Consultation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section-bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    <span class="lang-th">ผลงานของเรา</span><span class="lang-en">Our Portfolio</span>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="zoom-in">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" class="img-fluid" alt="Portfolio 1">
+                        <div class="portfolio-overlay">
+                            <div class="p-3 text-center">
+                                <h6><span class="lang-th">งานซ่อมแซมอาคารสูง</span><span class="lang-en">High-rise Repair</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="assets/images/portfolio_painting.png" class="img-fluid" alt="Portfolio 2">
+                        <div class="portfolio-overlay">
+                            <div class="p-3 text-center">
+                                <h6><span class="lang-th">งานทาสีอาคารพาณิชย์</span><span class="lang-en">Commercial Painting</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="portfolio-item">
+                        <img src="assets/images/portfolio_waterproofing.png" class="img-fluid" alt="Portfolio 3">
+                        <div class="portfolio-overlay">
+                            <div class="p-3 text-center">
+                                <h6><span class="lang-th">งานติดตั้งระบบกันซึม</span><span class="lang-en">Waterproofing Project</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>
+                    <span class="lang-th">ติดต่อเรา</span><span class="lang-en">Contact Us</span>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 mb-4" data-aos="fade-right">
+                    <div class="card p-4 h-100">
+                        <h4 class="mb-4"><span class="lang-th">ข้อมูลติดต่อ</span><span class="lang-en">Contact Info</span></h4>
+                        <p><i class="fas fa-map-marker-alt text-accent me-3"></i> 
+                            <span class="lang-th">873/10 ซอยกรุงเทพฯ - นนทบุรี 23/1 แขวงบางซื่อ เขตบางซื่อ กรุงเทพมหานคร 10800</span>
+                            <span class="lang-en">873/10 Soi Bangkok - Nonthaburi 23/1, Bang Sue, Bangkok 10800</span>
+                        </p>
+                        <p><i class="fas fa-phone text-accent me-3"></i> <span>084-996-7957</span></p>
+                        <p><i class="fas fa-envelope text-accent me-3"></i> <span>ufixdecor.service21@gmail.com</span></p>
+                        <p><i class="fab fa-line text-accent me-3"></i> <span>@Ufix.service01</span></p>
+                        <div class="mt-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2303.6922539629372!2d100.52965210362875!3d13.819024930723273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1780898942765!5m2!1sth!2sth" width="100%" height="250" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="card p-4 h-100">
+                        <h4 class="mb-4"><span class="lang-th">ส่งข้อความหาเรา</span><span class="lang-en">Send a Message</span></h4>
+                        <form action="mailto:ufixdecor.service21@gmail.com" method="post" enctype="text/plain">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="name" class="form-control" placeholder="ชื่อ-นามสกุล / Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="อีเมล / Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" name="phone" class="form-control" placeholder="เบอร์โทรศัพท์ / Phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea name="message" class="form-control" rows="5" placeholder="ข้อความ / Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <span class="lang-th">ส่งข้อความ</span><span class="lang-en">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4">Ufix Decor Service</h5>
+                    <p class="small text-muted">
+                        <span class="lang-th">ผู้เชี่ยวชาญด้านงานวิศวกรรมอาคารและการบำรุงรักษาครบวงจร ด้วยประสบการณ์ที่ยาวนานและทีมงานมืออาชีพ</span>
+                        <span class="lang-en">Specialists in integrated building engineering and maintenance with long experience and professional team.</span>
+                    </p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4"><span class="lang-th">เมนู</span><span class="lang-en">Menu</span></h5>
+                    <ul class="footer-menu-grid small">
+                        <li><a href="#home" class="text-muted text-decoration-none"><span class="lang-th">หน้าแรก</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none"><span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="#services" class="text-muted text-decoration-none"><span class="lang-th">บริการ</span><span class="lang-en">Services</span></a></li>
+                        <li><a href="#articles" class="text-muted text-decoration-none"><span class="lang-th">บทความ</span><span class="lang-en">Articles</span></a></li>
+                        <li><a href="#portfolio" class="text-muted text-decoration-none"><span class="lang-th">ผลงาน</span><span class="lang-en">Portfolio</span></a></li>
+                        <li><a href="#contact" class="text-muted text-decoration-none"><span class="lang-th">ติดต่อเรา</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4"><span class="lang-th">ติดต่อเรา</span><span class="lang-en">Contact</span></h5>
+                    <p class="small text-muted mb-2"><i class="fas fa-phone text-accent me-2"></i> 084-996-7957</p>
+                    <p class="small text-muted mb-2"><i class="fas fa-envelope text-accent me-2"></i> ufixdecor.service21@gmail.com</p>
+                    <p class="small text-muted mb-0"><i class="fab fa-line text-accent me-2"></i> @Ufix.service01</p>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="text-center small text-muted">
+                &copy; 2026 Ufix Decor Service Co., Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons (Mobile Bar) -->
+    <div class="mobile-sticky-bar">
+        <a href="tel:0849967957" class="sticky-item"><i class="fas fa-phone"></i><span class="lang-th">โทร</span><span class="lang-en">Call</span></a>
+        <a href="https://line.me/ti/p/@Ufix.service01" class="sticky-item"><i class="fab fa-line"></i><span>ไลน์</span><span class="lang-en">Line</span></a>
+        <a href="mailto:ufixdecor.service21@gmail.com" class="sticky-item"><i class="fas fa-envelope"></i><span class="lang-th">อีเมล</span><span class="lang-en">Email</span></a>
+        <a href="#contact" class="sticky-item"><i class="fas fa-quote-right"></i><span class="lang-th">ราคา</span><span class="lang-en">Quote</span></a>
+    </div>
+
+    <!-- PDPA Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-9 mb-3 mb-lg-0">
+                    <p class="mb-0 small">
+                        <span class="lang-th">เราใช้คุกกี้เพื่อเพิ่มประสิทธิภาพและประสบการณ์ที่ดีในการใช้งานเว็บไซต์ ท่านสามารถศึกษารายละเอียดการใช้คุกกี้ได้ที่ <a href="#" class="text-accent">นโยบายความเป็นส่วนตัว</a></span>
+                        <span class="lang-en">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. Learn more in our <a href="#" class="text-accent">Privacy Policy</a></span>
+                    </p>
+                </div>
+                <div class="col-lg-3 text-lg-end">
+                    <button class="btn btn-primary btn-sm me-2" onclick="acceptCookies()">
+                        <span class="lang-th">ยอมรับทั้งหมด</span><span class="lang-en">Accept All</span>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="declineCookies()">
+                        <span class="lang-th">ปฏิเสธ</span><span class="lang-en">Decline</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
