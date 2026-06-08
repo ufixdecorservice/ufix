@@ -15,6 +15,10 @@ with open(json_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # 1. Branding & Contact
+write_txt(os.path.join(base_path, 'Branding_Contact', 'Logo_URL.txt'), data['site']['logo_url'])
+write_txt(os.path.join(base_path, 'Branding_Contact', 'Logo_Width.txt'), data['site']['logo_width'])
+write_txt(os.path.join(base_path, 'Branding_Contact', 'Logo_Height.txt'), data['site']['logo_height'])
+write_txt(os.path.join(base_path, 'Branding_Contact', 'Favicon_URL.txt'), data['site']['favicon_url'])
 write_txt(os.path.join(base_path, 'Branding_Contact', 'CompanyName_TH.txt'), data['site']['name']['th'])
 write_txt(os.path.join(base_path, 'Branding_Contact', 'CompanyName_EN.txt'), data['site']['name']['en'])
 write_txt(os.path.join(base_path, 'Branding_Contact', 'Phone.txt'), data['site']['phone'])
