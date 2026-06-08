@@ -268,10 +268,24 @@ const Storage = {
 },
     
     async init() {
-        console.log('Storage: Connecting to Physical Text Files...');
+        console.log('Storage: Loading local cache first...');
+        
+        // 1. Load existing cache immediately to render UI without waiting for network/disk fetch
+        const existingData = localStorage.getItem(STORAGE_KEY);
+        if (existingData) {
+            this.isReady = true;
+            this.onReady.forEach(cb => cb());
+            this.onReady = []; // Clear to prevent double run
+        }
+
+        console.log('Storage: Connecting to Physical Text Files in background...');
         try {
             // Mapping of JSON paths to physical TXT files
             const files = {
+                "site.logo_url": "Branding_Contact/Logo_URL.txt",
+                "site.logo_width": "Branding_Contact/Logo_Width.txt",
+                "site.logo_height": "Branding_Contact/Logo_Height.txt",
+                "site.favicon_url": "Branding_Contact/Favicon_URL.txt",
                 "site.name.th": "Branding_Contact/CompanyName_TH.txt",
                 "site.name.en": "Branding_Contact/CompanyName_EN.txt",
                 "site.phone": "Branding_Contact/Phone.txt",
@@ -314,7 +328,6 @@ const Storage = {
             }
 
             // Use existing LocalStorage data as base to preserve portfolio, blog, and services
-            const existingData = localStorage.getItem(STORAGE_KEY);
             let newData = existingData ? JSON.parse(existingData) : JSON.parse(JSON.stringify(this.fallbackData));
 
             // Fetch all files in parallel
@@ -341,8 +354,15 @@ const Storage = {
             }
         }
 
-        this.isReady = true;
-        this.onReady.forEach(cb => cb());
+        // 2. Mark ready and trigger for first-load (if cache was empty)
+        if (!this.isReady) {
+            this.isReady = true;
+            this.onReady.forEach(cb => cb());
+            this.onReady = [];
+        } else {
+            // Already rendered with cache, dispatch update event to apply any changes in text files
+            window.dispatchEvent(new Event('storage_updated'));
+        }
     },
 
     setDeepValue(obj, path, value) {

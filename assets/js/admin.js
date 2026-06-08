@@ -5,6 +5,10 @@ const Admin = {
     editingIndex: -1,
     directoryHandle: null,
     fileMapping: {
+        "site.logo_url": "Branding_Contact/Logo_URL.txt",
+        "site.logo_width": "Branding_Contact/Logo_Width.txt",
+        "site.logo_height": "Branding_Contact/Logo_Height.txt",
+        "site.favicon_url": "Branding_Contact/Favicon_URL.txt",
         "site.name.th": "Branding_Contact/CompanyName_TH.txt",
         "site.name.en": "Branding_Contact/CompanyName_EN.txt",
         "site.phone": "Branding_Contact/Phone.txt",
@@ -451,17 +455,7 @@ const Admin = {
             <div class="row">
                 <div class="col-md-8">
                     <div class="card p-4 shadow-sm border-0 mb-4">
-                        <h5>โลโก้ & ชื่อบริษัท</h5>
-                        ${this.renderImageUpload('Logo URL', 'site_logo', site.logo_url)}
-                        <div class="row">
-                            <div class="col-md-6">${this.renderInput('ความกว้างโลโก้ (px)', 'site_logo_width', site.logo_width, 'number', 'เช่น 200')}</div>
-                            <div class="col-md-6">${this.renderInput('ความสูงสูงสุด (px)', 'site_logo_height', site.logo_height, 'number', 'เช่น 50')}</div>
-                        </div>
-                        <hr>
-                        <h5>ไอคอนเบราว์เซอร์ (Favicon)</h5>
-                        ${this.renderImageUpload('Favicon URL', 'site_favicon', site.favicon_url)}
-                        <div class="form-text small text-muted mb-3">แนะนำรูปจัตุรัสขนาด 32x32 หรือ 64x64 พิกเซล</div>
-                        <hr>
+                        <h5>ชื่อบริษัท</h5>
                         ${this.renderMultilingual('ชื่อบริษัท', 'site_name', site.name)}
                     </div>
                     <div class="card p-4 shadow-sm border-0 mb-4">
@@ -731,10 +725,12 @@ const Admin = {
                     it.desc = { th: document.getElementById(`why_desc_${i}_th`).value, en: document.getElementById(`why_desc_${i}_en`).value };
                 });
             } else if (s === 'site') {
-                d.site.logo_url = document.getElementById('site_logo_url').value;
-                d.site.logo_width = document.getElementById('site_logo_width').value;
-                d.site.logo_height = document.getElementById('site_logo_height').value;
-                d.site.favicon_url = document.getElementById('site_favicon_url').value;
+                if (document.getElementById('site_logo_url')) {
+                    d.site.logo_url = document.getElementById('site_logo_url').value;
+                    d.site.logo_width = document.getElementById('site_logo_width').value;
+                    d.site.logo_height = document.getElementById('site_logo_height').value;
+                    d.site.favicon_url = document.getElementById('site_favicon_url').value;
+                }
                 d.site.name = { th: document.getElementById('site_name_th').value, en: document.getElementById('site_name_en').value };
                 d.site.address = { th: document.getElementById('site_address_th').value, en: document.getElementById('site_address_en').value };
                 d.site.phone = document.getElementById('site_phone').value;

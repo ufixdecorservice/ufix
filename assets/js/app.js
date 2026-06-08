@@ -13,11 +13,23 @@ const App = {
         // Register for reactive re-renders when language changes
         I18n.registerRenderer(() => this.renderAll());
         
+        // Register to re-render when storage is updated in background
+        if (!this.handleBgSync) {
+            this.handleBgSync = () => {
+                console.log('App: Storage updated in background, re-rendering...');
+                this.data = Storage.get();
+                this.applyTheme();
+                this.renderAll();
+            };
+            window.addEventListener('storage_updated', this.handleBgSync);
+        }
+        
         // Initial render
         this.renderAll();
         
         this.initAOS();
         this.initContactForm();
+        this.initMobileNavbar();
     },
 
     applyTheme() {
@@ -76,30 +88,11 @@ const App = {
     },
 
     renderFavicon() {
-        const url = this.data.site?.favicon_url;
-        if (!url) return;
-        
-        let link = document.querySelector("link[rel*='icon']");
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'shortcut icon';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
-        link.href = url;
+        // Hardcoded in index.html, no dynamic favicon insertion
     },
 
     renderBranding() {
-        const logo = this.data.site?.logo_url;
-        const width = this.data.site?.logo_width || '200';
-        const maxHeight = this.data.site?.logo_height || '50';
-        const logoEl = document.querySelector('#site-logo');
-        if (logo && logoEl) {
-            logoEl.src = logo;
-            logoEl.style.width = width + 'px';
-            logoEl.style.maxHeight = maxHeight + 'px';
-            logoEl.style.height = 'auto';
-            logoEl.style.objectFit = 'contain';
-        }
+        // Hardcoded in index.html, no dynamic logo branding insertion
     },
 
     renderHero() {
@@ -310,7 +303,8 @@ const App = {
                 once: false, // Repeat animation
                 mirror: true, // Animate while scrolling past
                 anchorPlacement: 'top-bottom', // Trigger when top of element hits bottom of window
-                offset: 50 // Trigger slightly earlier
+                offset: 50, // Trigger slightly earlier
+                disable: 'mobile' // ป้องกันอนิเมชัน AOS ดันหน้าจอมือถือเลื่อนซ้ายขวาได้
             });
         }
     },
@@ -329,6 +323,24 @@ const App = {
                 window.location.href = mailtoLink;
             });
         }
+    },
+
+    initMobileNavbar() {
+        // Auto close mobile navbar menu collapse after clicking a navigation link
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    } else {
+                        // Fallback to trigger hamburger click
+                        document.querySelector('.navbar-toggler')?.click();
+                    }
+                }
+            });
+        });
     }
 };
 

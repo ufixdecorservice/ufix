@@ -1,10 +1,10 @@
 {
   "site": {
     "name": { "th": "บริษัท ยูฟิกซ์ เดคอร์ เซอร์วิส จำกัด", "en": "Ufix Decor Service Co., Ltd." },
-    "logo_url": "assets/images/UFIXF.jpg",
+    "logo_url": "assets/images/UFIX.png",
     "logo_width": "200",
     "logo_height": "80",
-    "favicon_url": "assets/images/UFIX.png",
+    "favicon_url": "assets/images/UFIXF.jpg",
     "phone": "084-996-7957",
     "email": "ufixdecor.service21@gmail.com",
     "line": "@Ufix.service01",
