@@ -5,7 +5,7 @@ const ASSETS = [
     './assets/js/storage.js',
     './assets/js/i18n.js',
     './assets/js/app.js',
-    './assets/data/default-data.json',
+    './assets/data/content.json',
     './assets/data/language.json'
 ];
 
