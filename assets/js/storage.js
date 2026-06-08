@@ -10,10 +10,10 @@ const Storage = {
       "th": "บริษัท ยูฟิกซ์ เดคอร์ เซอร์วิส จำกัด",
       "en": "Ufix Decor Service Co., Ltd."
     },
-    "logo_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAQAElEQVR4AeydB6AVNd7FTzLl1tfpRUXFhl3sFbtrr5/dtfeGvS72LvZe1r5iW9e1u2LXXbELKiggIP3x2u0zk3wnF1BAykPfU0rGyUwmk/kn+SWTk2TuQwm7WQKWgCVgCVgClsBiT8AK+mJfhbYAloAlYAlYApYA0L6CbglbApaAJWAJWAKWwB9CwAr6H4LZJmIJWAKWgCVgCbQvgcVZ0NuXjLVuCVgCloAlYAksRgSsoC9GlWWzaglYApaAJWAJzIuAFfR5kbHhloAlYAlYApbAYkTACvpiVFk2q5aAJWAJWAKWwLwIWEGfF5n2DbfWLQFLwBKwBCyBNiVgBb1NcVpjloAlYAlYApbAn0PACvqfw719U7XWLQFLwBKwBJY6AlbQl7oqtwW2BCwBS8ASWBIJWEFfEmu1fctkrVsCloAlYAksggSsoC+ClWKzZAlYApaAJWAJLCwBK+gLS8zGb18C1rolYAlYApbAbyJgBf03YbMPWQKWgCVgCVgCixYBK+iLVn3Y3LQvAWvdErAELIElloAV9CW2am3BLAFLwBKwBJYmAlbQl6batmVtXwLWuiVgCVgCfyIBK+h/InybtCVgCVgCloAl0FYErKC3FUlrxxJoXwLWuiVgCVgC8yVgBX2+eOxNS8ASsAQsAUtg8SBgBX3xqCebS0ugfQlY65aAJbDYE7CCvthXoS2AJWAJWAKWgCUAWEG3rcASsATam4C1bwlYAn8AASvofwBkm4QlYAlYApaAJDeBKygtzdha98SsATal4C1bglYAmUCVtDLGOzBErAELAFLwBJYvAlYQV+868/m3hKwBNqXgLVuCSw2BKygLzZVZTNqCVgCloAlYAnMm4AV9HmzsXcsAUvAEmhfAta6JdCGBKygtyFMa8oSsAQsAUvAEvizCFhB/7PI23QtAUvAEmhfAtb6UkbACvpSVuG2uJaAJWAJWAJLJgEr6EtmvdpSWQKWgCXQvgSs9UWOgBX0Ra5KbIYsAUvAErAELIGFJ2AFfeGZ2ScsAUvAErAE2peAtf4bCFhB/w3Q7COWgCVgCVgClsCiRsAK+qJWIzY/loAlYAlYAu1LYAm1bgV9Ca1YWyxLwBKwBCyBpYuAFfSlq75taS0BS8ASsATal8CfZt0K+p+G3iZsCVgCloAlYAm0HQEr6G3H0lqyBCwBS8ASsATal8B8rFtBnw8ce8sSsAQsAUvAElhcCFhBX1xqyubTErAELAFLwBKYD4E2EPT5WLe3LAFLwBKwBCwBS+APIWAF/Q/BbBOxBCwBS8ASsATal8AiL+jtW3xr3RKwBCwBS8ASWDIIWEFfMurRlsISsAQsAUtgKSewlAv6Ul77tviWgCVgCVgCSwwBK+hLTFXaglgCloAlYAkszQSsoLdj7VvTloAlYAlYApbAH0XACvofRdqmYwlYApaAJWAJtCMBK+jtCLd9TVvrloAlYAlYApbALwSsoP/CwvosAUvAErAELIHFloAV9MW26to349a6JWAJWAKWwOJFwAr64lVfNreWgCVgCVgClsBcCVhBnysWG9i+BKx1S8ASsAQsgbYmYAW9rYlae5aAJWAJWAKWwJ9AwAr6nwDdJtm+BKx1S8ASsASWRgJW0JfGWrdltgQsAUvAEljiCFhBX+Kq1BaofQlY65aAJWAJLJoErKAvmvVic2UJWAKWgCVgCSwUASvoC4XLRrYE2peAtW4JWAKWwG8lYAX9t5Kzz1kCloAlYAlYAosQASvoi1Bl2KxYAu1LwFq3BCyBJZmAFfQluXZt2SwBS8ASsASWGgJW0JeaqrYFtQTal4C1bglYAn8uASvofy5/m7olYAlYApaAJdAmBKygtwlGa8QSsATal4C1bglYAgsiYAV9QYTsfUvAErAELAFLYDEgYAV9Magkm0VLwBJoX... [truncated]",
+    "logo_url": "assets/images/UFIX.png",
     "logo_width": "200",
     "logo_height": "200",
-    "favicon_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAQAElEQVR4AeydB6AVNd7FTzLl1tfpRUXFhl3sFbtrr5/dtfeGvS72LvZe1r5iW9e1u2LXXbELKiggIP3x2u0zk3wnF1BAykPfU0rGyUwmk/kn+SWTk2TuQwm7WQKWgCVgCVgClsBiT8AK+mJfhbYAloAlYAlYApYA0L6CbglbApaAJWAJWAKWwB9CwAr6H4LZJmIJWAKWgCVgCbQvgcVZ0NuXjLVuCVgCloAlYAksRgSsoC9GlWWzaglYApaAJWAJzIuAFfR5kbHhloAlYAlYApbAYkTACvpiVFk2q5aAJWAJWAKWwLwIWEGfF5n2DbfWLQFLwBKwBCyBNiVgBb1NcVpjloAlYAlYApbAn0PACvqfw719U7XWLQFLwBKwBJY6AlbQl7oqtwW2BCwBS8ASWBIJWEFfEmu1fctkrVsCloAlYAksggSsoC+ClWKzZAlYApaAJWAJLCwBK+gLS8zGb18C1rolYAlYApbAbyJgBf03YbMPWQKWgCVgCVgCixYBK+iLVn3Y3LQvAWvdErAELIElloAV9CW2am3BLAFLwBKwBJYmAlbQl6batmVtXwLWuiVgCVgCfyIBK+h/InybtCVgCVgCloAl0FYErKC3FUlrxxJoXwLWuiVgCVgC8yVgBX2+eOxNS8ASsAQsAUtg8SBgBX3xqCebS0ugfQlY65aAJbDYE7CCvthXoS2AJWAJWAKWgCUAWEG3rcASsATam4C1bwlYAn8AASvofwBkm4QlYAlYApaAJdDeBKygtzdha98SsATal4C1bglYAmUCVtDLGOzBErAELAFLwBJYvAlYQV+868/m3hKwBNqXgLVuCSw2BKygLzZVZTNqCVgCloAlYAnMm4AV9HmzsXcsAUvAEmhfAta6JdCGBKygtyFMa8oSsAQsAUvAEvizCFhB/7PI23QtAUvAEmhfAtb6UkbACvpSVuG2uJaAJWAJWAJLJgEr6EtmvdpSWQKWgCXQvgSs9UWOgBX0Ra5KbIYsAUvAErAELIGFJ2AFfeGZ2ScsAUvAErAE2peAtf4bCFhB/w3Q7COWgCVgCVgClsCiRsAK+qJWIzY/loAlYAlYAu1LYAm1bgV9Ca1YWyxLwBKwBCyBpYuAFfSlq75taS0BS8ASsATal8CfZt0K+p+G3iZsCVgCloAlYAm0HQEr6G3H0lqyBCwBS8ASsATal8B8rFtBnw8ce8sSsAQsAUvAElhcCFhBX1xqyubTErAELAFLwBKYD4E2EPT5WLe3LAFLwBKwBCwBS+APIWAF/Q/BbBOxBCwBS8ASsATal8AiL+jtW3xr3RKwBCwBS8ASWDIIWEFfMurRlsISsAQsAUtgKSewlAv6Ul77tviWgCVgCVgCSwwBK+hLTFXaglgCloAlYAkszQSsoLdj7VvTloAlYAlYApbAH0XACvofRdqmYwlYApaAJWAJtCMBK+jtCLd9TVvrloAlYAlYApbALwSsoP/CwvosAUvAErAELIHFloAV9MW26to349a6JWAJWAKWwOJFwAr64lVfNreWgCVgCVgClsBcCVhBnysWG9i+BKx1S8ASsAQsgbYmYAW9rYlae5aAJWAJWAKWwJ9AwAr6nwDdJtm+BKx1S8ASsASWRgJW0JfGWrdltgQsAUvAEljiCFhBX+Kq1BaofQlY65aAJWAJLJoErKAvmvVic2UJWAKWgCVgCSwUASvoC4XLRrYE2peAtW4JWAKWwG8lYAX9t5Kzz1kCloAlYAlYAosQASvoi1Bl2KxYAu1LwFq3BCyBJZmAFfQluXZt2SwBS8ASsASWGgJW0JeaqrYFtQTal4C1bglYAn8uASvofy5/m7olYAlYApaAJdAmBKygtwlGa8QSsATal4C1bglYAgsiYAV9QYTsfUvAErAELAFLYDEgYAV9Magkm0VLwB... [truncated]",
+    "favicon_url": "assets/images/UFIXF.jpg",
     "phone": "084-996-7957",
     "email": "ufixdecor.service21@gmail.com",
     "line": "@Ufix.service01",
@@ -21,7 +21,7 @@ const Storage = {
       "th": "873/10 ซอยกรุงเทพฯ - นนทบุรี 23/1 ถนนกรุงเทพฯ - นนทบุรี แขวงบางซื่อ เขตบางซื่อ กรุงเทพมหานคร 10800",
       "en": "873/10 Soi Bangkok - Nonthaburi 23/1, Bangkok - Nonthaburi Rd, Bang Sue, Bangkok 10800"
     },
-    "maps_url": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2303.6922539629372!2d100.52965210362875!3d13.819024930723273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1780898942765!5m2!1sth!2sth\"",
+    "maps_url": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2303.6922539629372!2d100.52965210362875!3d13.819024930723273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1780898942765!5m2!1sth!2sth",
     "footer_desc": {
       "th": "ผู้เชี่ยวชาญด้านงานวิศวกรรมอาคารและการบำรุงรักษาครบวงจร ด้วยประสบการณ์ที่ยาวนานและทีมงานมืออาชีพ",
       "en": "Specialists in integrated building engineering and maintenance with long experience and a professional team."
@@ -119,7 +119,14 @@ const Storage = {
       }
     ]
   },
-  "services": [],
+  "services": [
+    {
+      "id": 1,
+      "title": { "th": "ตัวอย่างบริการ 1", "en": "Sample Service 1" },
+      "desc": { "th": "รายละเอียดบริการ 1", "en": "Description 1" },
+      "image": "assets/images/UFIX.png"
+    }
+  ],
   "portfolio": [],
   "blog": [],
   "theme": {
@@ -259,19 +266,76 @@ const Storage = {
     }
   }
 },
-
+    
     async init() {
-        console.log('Storage: Syncing with GitHub/Server...');
+        console.log('Storage: Connecting to Physical Text Files...');
         try {
-            // Priority: ALWAYS fetch the latest data from the file
-            const response = await fetch('assets/data/content.json?v=' + Date.now());
-            if (!response.ok) throw new Error('Could not load content.json');
-            const fileData = await response.json();
+            // Mapping of JSON paths to physical TXT files
+            const files = {
+                "site.name.th": "Branding_Contact/CompanyName_TH.txt",
+                "site.name.en": "Branding_Contact/CompanyName_EN.txt",
+                "site.phone": "Branding_Contact/Phone.txt",
+                "site.email": "Branding_Contact/Email.txt",
+                "site.line": "Branding_Contact/Line.txt",
+                "site.address.th": "Branding_Contact/Address_TH.txt",
+                "site.address.en": "Branding_Contact/Address_EN.txt",
+                "site.maps_url": "Branding_Contact/Maps_Embed_URL.txt",
+                "site.footer_desc.th": "Branding_Contact/Footer_Desc_TH.txt",
+                "site.footer_desc.en": "Branding_Contact/Footer_Desc_EN.txt",
+                "seo.title.th": "SEO_Settings/Site_Title_TH.txt",
+                "seo.title.en": "SEO_Settings/Site_Title_EN.txt",
+                "seo.desc.th": "SEO_Settings/Meta_Description_TH.txt",
+                "seo.desc.en": "SEO_Settings/Meta_Description_EN.txt",
+                "seo.keywords": "SEO_Settings/Keywords.txt",
+                "hero.title.th": "Hero_Section/หัวข้อหลัก (Title) (TH).txt",
+                "hero.title.en": "Hero_Section/หัวข้อหลัก (Title) (EN).txt",
+                "hero.desc.th": "Hero_Section/คำโปรย (Description) (TH).txt",
+                "hero.desc.en": "Hero_Section/คำโปรย (Description) (EN).txt",
+                "about.title.th": "About_Us/Title_TH.txt",
+                "about.title.en": "About_Us/Title_EN.txt",
+                "about.desc.th": "About_Us/Description_TH.txt",
+                "about.desc.en": "About_Us/Description_EN.txt",
+                "legal.privacy.th": "Legal/Privacy_TH.txt",
+                "legal.privacy.en": "Legal/Privacy_EN.txt",
+                "legal.terms.th": "Legal/Terms_TH.txt",
+                "legal.terms.en": "Legal/Terms_EN.txt",
+                "legal.cookie.th": "Legal/Cookie_TH.txt",
+                "legal.cookie.en": "Legal/Cookie_EN.txt",
+                "theme.primary": "Theme/Primary.txt",
+                "theme.accent": "Theme/Accent.txt"
+            };
+
+            // Why Us Items
+            for(let i=1; i<=3; i++) {
+                files[`why.items.${i-1}.title.th`] = `Why_Us/Item_${i}_Title_TH.txt`;
+                files[`why.items.${i-1}.title.en`] = `Why_Us/Item_${i}_Title_EN.txt`;
+                files[`why.items.${i-1}.desc.th`] = `Why_Us/Item_${i}_Desc_TH.txt`;
+                files[`why.items.${i-1}.desc.en`] = `Why_Us/Item_${i}_Desc_EN.txt`;
+            }
+
+            // Use existing LocalStorage data as base to preserve portfolio, blog, and services
+            const existingData = localStorage.getItem(STORAGE_KEY);
+            let newData = existingData ? JSON.parse(existingData) : JSON.parse(JSON.stringify(this.fallbackData));
+
+            // Fetch all files in parallel
+            const fetchPromises = Object.entries(files).map(async ([jsonPath, filePath]) => {
+                try {
+                    const response = await fetch(`assets/Edit-body/${filePath}?v=${Date.now()}`);
+                    if (response.ok) {
+                        const text = await response.text();
+                        this.setDeepValue(newData, jsonPath, text.trim());
+                    }
+                } catch (e) {
+                    console.warn(`Could not load ${filePath}`, e);
+                }
+            });
+
+            await Promise.all(fetchPromises);
             
-            console.log('Storage: Content updated from GitHub/Server.');
-            this.save(fileData); // Overwrite local cache with fresh data from file
+            console.log('Storage: All physical files synced successfully.');
+            this.save(newData); 
         } catch (error) {
-            console.warn('Storage: Offline or File missing, using local cache.', error);
+            console.error('Storage Sync Error:', error);
             if (!localStorage.getItem(STORAGE_KEY)) {
                 this.save(this.fallbackData);
             }
@@ -279,6 +343,16 @@ const Storage = {
 
         this.isReady = true;
         this.onReady.forEach(cb => cb());
+    },
+
+    setDeepValue(obj, path, value) {
+        const keys = path.split('.');
+        let current = obj;
+        for (let i = 0; i < keys.length - 1; i++) {
+            if (!current[keys[i]]) current[keys[i]] = {};
+            current = current[keys[i]];
+        }
+        current[keys[keys.length - 1]] = value;
     },
 
     get() {

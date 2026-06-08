@@ -3,32 +3,188 @@ const Admin = {
     pass: 'admin123',
     currentSection: 'hero',
     editingIndex: -1,
+    directoryHandle: null,
+    fileMapping: {
+        "site.name.th": "Branding_Contact/CompanyName_TH.txt",
+        "site.name.en": "Branding_Contact/CompanyName_EN.txt",
+        "site.phone": "Branding_Contact/Phone.txt",
+        "site.email": "Branding_Contact/Email.txt",
+        "site.line": "Branding_Contact/Line.txt",
+        "site.address.th": "Branding_Contact/Address_TH.txt",
+        "site.address.en": "Branding_Contact/Address_EN.txt",
+        "site.maps_url": "Branding_Contact/Maps_Embed_URL.txt",
+        "site.footer_desc.th": "Branding_Contact/Footer_Desc_TH.txt",
+        "site.footer_desc.en": "Branding_Contact/Footer_Desc_EN.txt",
+        "seo.title.th": "SEO_Settings/Site_Title_TH.txt",
+        "seo.title.en": "SEO_Settings/Site_Title_EN.txt",
+        "seo.desc.th": "SEO_Settings/Meta_Description_TH.txt",
+        "seo.desc.en": "SEO_Settings/Meta_Description_EN.txt",
+        "seo.keywords": "SEO_Settings/Keywords.txt",
+        "hero.title.th": "Hero_Section/หัวข้อหลัก (Title) (TH).txt",
+        "hero.title.en": "Hero_Section/หัวข้อหลัก (Title) (EN).txt",
+        "hero.desc.th": "Hero_Section/คำโปรย (Description) (TH).txt",
+        "hero.desc.en": "Hero_Section/คำโปรย (Description) (EN).txt",
+        "about.title.th": "About_Us/Title_TH.txt",
+        "about.title.en": "About_Us/Title_EN.txt",
+        "about.desc.th": "About_Us/Description_TH.txt",
+        "about.desc.en": "About_Us/Description_EN.txt",
+        "legal.privacy.th": "Legal/Privacy_TH.txt",
+        "legal.privacy.en": "Legal/Privacy_EN.txt",
+        "legal.terms.th": "Legal/Terms_TH.txt",
+        "legal.terms.en": "Legal/Terms_EN.txt",
+        "legal.cookie.th": "Legal/Cookie_TH.txt",
+        "legal.cookie.en": "Legal/Cookie_EN.txt",
+        "theme.primary": "Theme/Primary.txt",
+        "theme.accent": "Theme/Accent.txt"
+    },
     
     init() {
         console.log('Admin CMS Elite V1.1 Initializing...');
+        
+        // Add Why Us to mapping
+        for(let i=1; i<=3; i++) {
+            this.fileMapping[`why.items.${i-1}.title.th`] = `Why_Us/Item_${i}_Title_TH.txt`;
+            this.fileMapping[`why.items.${i-1}.title.en`] = `Why_Us/Item_${i}_Title_EN.txt`;
+            this.fileMapping[`why.items.${i-1}.desc.th`] = `Why_Us/Item_${i}_Desc_TH.txt`;
+            this.fileMapping[`why.items.${i-1}.desc.en`] = `Why_Us/Item_${i}_Desc_EN.txt`;
+        }
+
         if (sessionStorage.getItem('admin_logged_in') === 'true') {
             this.showPanel();
         }
 
         const form = document.getElementById('login-form');
+        console.log("Admin: Form element found:", !!form);
         if (form) {
-            form.onsubmit = (e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                console.log("Login form submit intercepted!");
+                
                 const u = document.getElementById('username').value;
                 const p = document.getElementById('password').value;
+                
+                console.log("Login Attempt - User:", u, "Pass:", p);
+                console.log("Expected - User:", this.user, "Pass:", this.pass);
+
                 if (u === this.user && p === this.pass) {
+                    console.log("Login Success!");
                     sessionStorage.setItem('admin_logged_in', 'true');
                     this.showPanel();
                 } else {
+                    console.error("Login Failed: Incorrect credentials.");
                     const err = document.getElementById('login-error');
                     if (err) err.classList.remove('d-none');
+                    alert("Login Failed! Check console (F12) for details.");
                 }
-            };
+            });
         }
         this.initNavigation();
-        
-        // Ensure Admin is globally accessible for inline onclick events
         window.Admin = this;
+    },
+
+    async connectFolder() {
+        try {
+            this.directoryHandle = await window.showDirectoryPicker({
+                mode: 'readwrite'
+            });
+            document.getElementById('btn-connect-folder').classList.replace('btn-primary', 'btn-success');
+            document.getElementById('btn-connect-folder').innerHTML = '✅ เชื่อมต่อแล้ว';
+            alert('เชื่อมต่อโฟลเดอร์สำเร็จ! ระบบจะบันทึกลงไฟล์ .txt โดยตรงครับ');
+        } catch (err) {
+            console.error('Directory Picker Error:', err);
+            alert('ไม่สามารถเชื่อมต่อโฟลเดอร์ได้: ' + err.message);
+        }
+    },
+
+    async saveToPhysicalFiles(data) {
+        if (!this.directoryHandle) {
+            console.warn('Not connected to a folder. Saving to browser only.');
+            return false;
+        }
+
+        const promises = Object.entries(this.fileMapping).map(async ([jsonPath, filePath]) => {
+            const val = this.getDeepValue(data, jsonPath);
+            if (val !== undefined) {
+                try {
+                    const parts = filePath.split('/');
+                    let currentHandle = this.directoryHandle;
+                    
+                    // Navigate to subfolder
+                    if (parts.length > 1) {
+                        currentHandle = await this.directoryHandle.getDirectoryHandle(parts[0], { create: true });
+                    }
+                    
+                    const fileHandle = await currentHandle.getFileHandle(parts[parts.length - 1], { create: true });
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(val);
+                    await writable.close();
+                } catch (e) {
+                    console.error(`Failed to write ${filePath}`, e);
+                }
+            }
+        });
+
+        // Also save UI Labels (safely with try-catch)
+        Object.keys(data.ui).forEach(key => {
+            promises.push((async () => {
+                try {
+                    const folder = await this.directoryHandle.getDirectoryHandle('UI_Labels', { create: true });
+                    
+                    const thHandle = await folder.getFileHandle(`${key}_TH.txt`, { create: true });
+                    const thW = await thHandle.createWritable();
+                    await thW.write(data.ui[key].th || '');
+                    await thW.close();
+
+                    const enHandle = await folder.getFileHandle(`${key}_EN.txt`, { create: true });
+                    const enW = await enHandle.createWritable();
+                    await enW.write(data.ui[key].en || '');
+                    await enW.close();
+                } catch (e) {
+                    console.error(`Failed to write UI Label: ${key}`, e);
+                }
+            })());
+        });
+
+        // Also save Services dynamically (safely with try-catch)
+        if (data.services) {
+            data.services.forEach((item, i) => {
+                promises.push((async () => {
+                    try {
+                        const folder = await this.directoryHandle.getDirectoryHandle('Services', { create: true });
+                        const itemFolder = await folder.getDirectoryHandle(`Item_${i+1}`, { create: true });
+                        
+                        const thHandle = await itemFolder.getFileHandle('Title_TH.txt', { create: true });
+                        const thW = await thHandle.createWritable();
+                        await thW.write(item.title?.th || '');
+                        await thW.close();
+
+                        const enHandle = await itemFolder.getFileHandle('Title_EN.txt', { create: true });
+                        const enW = await enHandle.createWritable();
+                        await enW.write(item.title?.en || '');
+                        await enW.close();
+
+                        const descTHHandle = await itemFolder.getFileHandle('Desc_TH.txt', { create: true });
+                        const descTHW = await descTHHandle.createWritable();
+                        await descTHW.write(item.desc?.th || '');
+                        await descTHW.close();
+
+                        const descENHandle = await itemFolder.getFileHandle('Desc_EN.txt', { create: true });
+                        const descENW = await descENHandle.createWritable();
+                        await descENW.write(item.desc?.en || '');
+                        await descENW.close();
+                    } catch (e) {
+                        console.error(`Failed to write Service Item ${i+1}`, e);
+                    }
+                })());
+            });
+        }
+
+        await Promise.all(promises);
+        return true;
+    },
+
+    getDeepValue(obj, path) {
+        return path.split('.').reduce((acc, part) => acc && acc[part], obj);
     },
 
     showPanel() {
@@ -57,9 +213,21 @@ const Admin = {
         console.log('Loading section:', section);
         this.currentSection = section;
         this.editingIndex = -1;
-        const data = Storage.get();
+        let data = Storage.get();
+        if (!data) {
+            console.warn('Storage data is empty. Falling back to fallbackData.');
+            data = Storage.fallbackData;
+        } else {
+            // Guarantee all necessary sections exist from fallbackData if missing
+            const fallback = Storage.fallbackData;
+            ['hero', 'about', 'why', 'services', 'portfolio', 'blog', 'site', 'seo', 'ui', 'legal', 'theme'].forEach(key => {
+                if (data[key] === undefined || data[key] === null) {
+                    data[key] = JSON.parse(JSON.stringify(fallback[key]));
+                }
+            });
+        }
         const container = document.getElementById('editor-container');
-        if (!data || !container) return;
+        if (!container) return;
 
         try {
             let html = '';
@@ -528,7 +696,7 @@ const Admin = {
         }
     },
 
-    save() {
+    async save() {
         const d = Storage.get();
         const s = this.currentSection;
         console.log('Global Save triggered for section:', s);
@@ -593,15 +761,18 @@ const Admin = {
             } else if (s === 'theme') {
                 d.theme.primary = document.getElementById('theme_primary').value;
                 d.theme.accent = document.getElementById('theme_accent').value;
-            } else if (['services', 'portfolio', 'blog'].includes(s)) {
-                this.loadSection(s);
-                this.showSyncModal();
-                return;
             }
 
             Storage.save(d);
+            const physicalSaved = await this.saveToPhysicalFiles(d);
+            
             this.loadSection(s);
-            this.showSyncModal();
+            
+            if (physicalSaved) {
+                alert('🚀 บันทึกลงไฟล์ .txt ในเครื่องสำเร็จแล้วครับ!');
+            } else {
+                this.showSyncModal();
+            }
         } catch (err) {
             console.error('Save Error:', err);
             alert('เกิดข้อผิดพลาดในการบันทึกข้อมูลครับ: ' + err.message);

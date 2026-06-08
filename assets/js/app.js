@@ -157,57 +157,81 @@ const App = {
         }
     },
 
-    renderServices() {
+    async getDynamicImage(folderPath) {
+        if (!folderPath) return 'assets/images/default.png';
+        if (folderPath.startsWith('http') || /\.(jpg|jpeg|png|gif|webp|svg)/i.test(folderPath)) {
+            return folderPath;
+        }
+        const extensions = ['main.jpg', 'main.png', 'main.jpeg', 'main.webp'];
+        for (const ext of extensions) {
+            const fullPath = folderPath + (folderPath.endsWith('/') ? '' : '/') + ext;
+            try {
+                const response = await fetch(fullPath, { method: 'HEAD' });
+                if (response.ok) return fullPath;
+            } catch (e) {
+                console.warn(`Could not check ${fullPath}`);
+            }
+        }
+        return folderPath.endsWith('/') ? folderPath + 'default.png' : folderPath;
+    },
+
+    async renderServices() {
         const container = document.querySelector('#services-grid');
         if (!container || !this.data.services) return;
         
-        container.innerHTML = this.data.services.map(s => `
-            <div class="col-md-4 mb-4" data-aos="fade-up">
-                <div class="card h-100 service-card border-0 shadow-sm">
-                    <img src="${s.image}" class="card-img-top service-img" alt="${I18n.getLocalizedText(s.title)}" loading="lazy">
-                    <div class="card-body">
-                        <h5 class="card-title">${I18n.getLocalizedText(s.title)}</h5>
-                        <p class="card-text text-muted small">${I18n.getLocalizedText(s.desc)}</p>
+        const servicesHtml = await Promise.all(this.data.services.map(async s => {
+            const img = await this.getDynamicImage(s.image);
+            return `
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card h-100 service-card border-0 shadow-sm">
+                        <img src="${img}" class="card-img-top service-img" alt="${I18n.getLocalizedText(s.title)}" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">${I18n.getLocalizedText(s.title)}</h5>
+                            <p class="card-text text-muted small">${I18n.getLocalizedText(s.desc)}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }));
+        container.innerHTML = servicesHtml.join('');
     },
 
     renderPortfolio() {
-        const container = document.querySelector('#portfolio-grid');
-        if (!container || !this.data.portfolio) return;
-        
-        container.innerHTML = this.data.portfolio.map(p => `
-            <div class="col-md-6 mb-4" data-aos="fade-up">
-                <div class="card portfolio-card h-100 border-0 shadow-sm overflow-hidden">
-                    <div class="row g-0 h-100">
-                        <div class="col-6">
-                            <div class="portfolio-label">BEFORE</div>
-                            <img src="${p.image_before}" class="img-fluid h-100 object-fit-cover" alt="Before">
+        if (typeof Portfolio !== 'undefined' && Portfolio.render) {
+            Portfolio.render();
+        } else {
+            const container = document.querySelector('#portfolio-grid');
+            if (!container || !this.data.portfolio) return;
+            
+            container.innerHTML = this.data.portfolio.map(p => `
+                <div class="col-md-6 mb-4" data-aos="fade-up">
+                    <div class="card portfolio-card h-100 border-0 shadow-sm overflow-hidden">
+                        <div class="row g-0 h-100">
+                            <div class="col-6">
+                                <div class="portfolio-label">BEFORE</div>
+                                <img src="${p.image_before}" class="img-fluid h-100 object-fit-cover" alt="Before">
+                            </div>
+                            <div class="col-6">
+                                <div class="portfolio-label">AFTER</div>
+                                <img src="${p.image_after}" class="img-fluid h-100 object-fit-cover" alt="After">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <div class="portfolio-label">AFTER</div>
-                            <img src="${p.image_after}" class="img-fluid h-100 object-fit-cover" alt="After">
+                        <div class="portfolio-info p-3">
+                            <h5 class="mb-1">${I18n.getLocalizedText(p.title)}</h5>
+                            <p class="small text-muted mb-0">${I18n.getLocalizedText(p.desc)}</p>
                         </div>
-                    </div>
-                    <div class="portfolio-info p-3">
-                        <h5 class="mb-1">${I18n.getLocalizedText(p.title)}</h5>
-                        <p class="small text-muted mb-0">${I18n.getLocalizedText(p.desc)}</p>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
     },
 
     renderBlog() {
-        const container = document.querySelector('#blog-grid');
-        if (!container || !this.data.blog) return;
-        
         const blogSection = document.querySelector('#blog');
         const blogNavLink = document.querySelector('a[href="#blog"]')?.parentElement;
+        const blogData = this.data.blog || [];
 
-        if (this.data.blog.length === 0) {
+        if (blogData.length === 0) {
             if (blogSection) blogSection.style.display = 'none';
             if (blogNavLink) blogNavLink.style.display = 'none';
             return;
@@ -216,18 +240,25 @@ const App = {
             if (blogNavLink) blogNavLink.style.display = 'block';
         }
 
-        container.innerHTML = this.data.blog.map(b => `
-            <div class="col-md-4 mb-4" data-aos="fade-up">
-                <div class="card h-100 border-0 shadow-sm blog-card">
-                    <img src="${b.image}" class="card-img-top" alt="${I18n.getLocalizedText(b.title)}">
-                    <div class="card-body">
-                        <h5 class="card-title">${I18n.getLocalizedText(b.title)}</h5>
-                        <p class="card-text text-muted small">${I18n.getLocalizedText(b.content).substring(0, 100)}...</p>
-                        <a href="#" class="btn btn-link p-0 text-accent fw-bold" data-i18n="read_more">อ่านต่อ</a>
+        if (typeof Blog !== 'undefined' && Blog.render) {
+            Blog.render();
+        } else {
+            const container = document.querySelector('#blog-grid');
+            if (!container) return;
+            
+            container.innerHTML = blogData.map(b => `
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card h-100 border-0 shadow-sm blog-card">
+                        <img src="${b.image}" class="card-img-top" alt="${I18n.getLocalizedText(b.title)}">
+                        <div class="card-body">
+                            <h5 class="card-title">${I18n.getLocalizedText(b.title)}</h5>
+                            <p class="card-text text-muted small">${I18n.getLocalizedText(b.content).substring(0, 100)}...</p>
+                            <a href="#" class="btn btn-link p-0 text-accent" data-i18n="read_more">อ่านต่อ</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
     },
 
     renderContact() {
@@ -256,14 +287,19 @@ const App = {
         const s = this.data.site;
         if (!s) return;
         
+        const cleanPhone = s.phone ? s.phone.replace(/-/g, '').replace(/\s/g, '') : '';
+        const lineUrl = s.line.startsWith('@') 
+            ? `https://line.me/R/ti/p/${encodeURIComponent(s.line)}` 
+            : `https://line.me/ti/p/~${s.line}`;
+        
         // Floating Btns
-        document.querySelector('.btn-call')?.setAttribute('href', `tel:${s.phone.replace(/-/g, '')}`);
-        document.querySelector('.btn-line')?.setAttribute('href', `https://line.me/ti/p/${s.line}`);
+        document.querySelector('.btn-call')?.setAttribute('href', `tel:${cleanPhone}`);
+        document.querySelector('.btn-line')?.setAttribute('href', lineUrl);
         
         // Mobile Bar
         const stickyItems = document.querySelectorAll('.mobile-sticky-bar .sticky-item');
-        if (stickyItems[0]) stickyItems[0].setAttribute('href', `tel:${s.phone.replace(/-/g, '')}`);
-        if (stickyItems[1]) stickyItems[1].setAttribute('href', `https://line.me/ti/p/${s.line}`);
+        if (stickyItems[0]) stickyItems[0].setAttribute('href', `tel:${cleanPhone}`);
+        if (stickyItems[1]) stickyItems[1].setAttribute('href', lineUrl);
         if (stickyItems[2]) stickyItems[2].setAttribute('href', `mailto:${s.email}`);
     },
 
