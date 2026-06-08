@@ -261,31 +261,28 @@ const Storage = {
 },
 
     async init() {
-        let rawData = localStorage.getItem(STORAGE_KEY);
-        let data = rawData ? JSON.parse(rawData) : null;
+        console.log('Storage: Connecting to File System...');
+        try {
+            // Priority 1: Load from permanent file (Source of Truth)
+            const response = await fetch('assets/data/content.json?v=' + Date.now());
+            if (!response.ok) throw new Error('File not found');
+            const fileData = await response.json();
+            
+            // Check if we have newer unsaved changes in LocalStorage (Optional)
+            const localRaw = localStorage.getItem(STORAGE_KEY);
+            if (localRaw) {
+                console.log('Storage: Local cache found. Using local data for this session.');
+                this.isReady = true;
+                this.onReady.forEach(cb => cb());
+                return;
+            }
 
-        if (!data) {
-            this.save(this.fallbackData);
-        } else {
-            // Deep Auto-Repair Missing Keys
-            let repaired = false;
-            Object.keys(this.fallbackData).forEach(key => {
-                if (!data[key]) {
-                    data[key] = this.fallbackData[key];
-                    repaired = true;
-                } else if (typeof this.fallbackData[key] === 'object' && !Array.isArray(this.fallbackData[key])) {
-                    // Check sub-keys for objects (like site, hero, about, etc.)
-                    Object.keys(this.fallbackData[key]).forEach(subKey => {
-                        if (data[key][subKey] === undefined) {
-                            data[key][subKey] = this.fallbackData[key][subKey];
-                            repaired = true;
-                        }
-                    });
-                }
-            });
-            if (repaired) {
-                console.log('Storage: Deep repair completed.');
-                this.save(data);
+            console.log('Storage: Loaded from assets/data/content.json');
+            this.save(fileData);
+        } catch (error) {
+            console.warn('Storage: Cannot reach file, using fallback.', error);
+            if (!localStorage.getItem(STORAGE_KEY)) {
+                this.save(this.fallbackData);
             }
         }
 

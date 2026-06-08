@@ -13,6 +13,9 @@ const App = {
         // Register for reactive re-renders when language changes
         I18n.registerRenderer(() => this.renderAll());
         
+        // Initial render
+        this.renderAll();
+        
         this.initAOS();
         this.initContactForm();
     },
@@ -201,9 +204,16 @@ const App = {
         const container = document.querySelector('#blog-grid');
         if (!container || !this.data.blog) return;
         
+        const blogSection = document.querySelector('#blog');
+        const blogNavLink = document.querySelector('a[href="#blog"]')?.parentElement;
+
         if (this.data.blog.length === 0) {
-            container.innerHTML = '<div class="col-12 text-center text-muted py-5">เร็วๆ นี้ / Coming Soon</div>';
+            if (blogSection) blogSection.style.display = 'none';
+            if (blogNavLink) blogNavLink.style.display = 'none';
             return;
+        } else {
+            if (blogSection) blogSection.style.display = 'block';
+            if (blogNavLink) blogNavLink.style.display = 'block';
         }
 
         container.innerHTML = this.data.blog.map(b => `

@@ -420,9 +420,22 @@ const Admin = {
         const file = input.files[0];
         if (!file) return;
 
-        // Check file size (limit to 1MB for localStorage safety)
+        const fileName = file.name;
+        const localPath = `assets/images/${fileName}`;
+        
+        // Suggest local path to user
+        if (confirm(`คุณต้องการใช้พาธไฟล์ในโปรเจกต์ (${localPath}) แทนการใช้รหัสรูปภาพยาวๆ หรือไม่?\n\n(แนะนำ: วิธีนี้จะทำให้ไฟล์ไม่หนักเครื่องและอัปโหลดขึ้น GitHub ได้ง่ายกว่าครับ)`)) {
+            const urlEl = document.getElementById(urlInputId);
+            const imgEl = document.getElementById(imgId);
+            if (urlEl) urlEl.value = localPath;
+            if (imgEl) imgEl.src = localPath; // Note: will only show if file is already in the folder
+            alert(`เรียบร้อยครับ! อย่าลืมก๊อปปี้ไฟล์ ${fileName} ไปวางไว้ในโฟลเดอร์ assets/images/ ของโปรเจกต์ด้วยนะครับ`);
+            return;
+        }
+
+        // Fallback to Base64 for quick preview/temporary use
         if (file.size > 1024 * 1024) {
-            alert('รูปภาพมีขนาดใหญ่เกินไป (จำกัด 1MB) กรุณาใช้ไฟล์รูปที่เล็กลงหรือใช้ URL รูปจากภายนอกแทนครับ');
+            alert('รูปภาพมีขนาดใหญ่เกินไป (จำกัด 1MB สำหรับโหมดชั่วคราว) แนะนำให้ใช้การบันทึกแบบพาธไฟล์แทนครับ');
             input.value = '';
             return;
         }
@@ -434,7 +447,6 @@ const Admin = {
             const urlEl = document.getElementById(urlInputId);
             if (imgEl) imgEl.src = base64;
             if (urlEl) urlEl.value = base64;
-            input.dataset.base64 = base64;
         };
         reader.readAsDataURL(file);
     },
@@ -528,6 +540,7 @@ const Admin = {
         }
 
         try {
+            // ... (rest of the save logic remains the same)
             if (s === 'hero') {
                 d.hero.title = { th: document.getElementById('hero_title_th').value, en: document.getElementById('hero_title_en').value };
                 d.hero.desc = { th: document.getElementById('hero_desc_th').value, en: document.getElementById('hero_desc_en').value };
@@ -582,20 +595,59 @@ const Admin = {
                 d.theme.accent = document.getElementById('theme_accent').value;
             } else if (['services', 'portfolio', 'blog'].includes(s)) {
                 this.loadSection(s);
-                alert('บันทึกข้อมูลส่วนรายการสำเร็จ! (รายการในหน้านี้ถูกบันทึกแยกกันแล้วครับ)');
+                this.showSyncModal();
                 return;
-            } else { 
-                console.warn('Unknown section for saving:', s);
-                return; 
             }
 
             Storage.save(d);
-            alert('บันทึกข้อมูลเรียบร้อยแล้วครับ! 🎉');
             this.loadSection(s);
+            this.showSyncModal();
         } catch (err) {
             console.error('Save Error:', err);
             alert('เกิดข้อผิดพลาดในการบันทึกข้อมูลครับ: ' + err.message);
         }
+    },
+
+    showSyncModal() {
+        const data = Storage.get();
+        const jsonCode = JSON.stringify(data, null, 2);
+        
+        // Remove existing modal if any
+        document.getElementById('sync-modal')?.remove();
+
+        const modalHtml = `
+            <div class="modal fade" id="sync-modal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i> บันทึกใน Browser สำเร็จ!</h5>
+                            <button type="button" class="btn-close btn-close-white" onclick="this.closest('.modal').remove()"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="fw-bold text-danger">⚠️ ขั้นตอนสุดท้ายเพื่อบันทึกลงไฟล์ (D:\\...\\ufix):</p>
+                            <ol>
+                                <li>ก๊อปปี้รหัส JSON ด้านล่างนี้ทั้งหมด</li>
+                                <li>นำไปวางในแชทแล้วบอก <b>"จาวิช อัปเดตไฟล์ content.json ให้หน่อย"</b></li>
+                                <li>ผมจะทำการเขียนไฟล์ลงในเครื่องเจ้านายให้ทันทีครับ!</li>
+                            </ol>
+                            <textarea class="form-control font-monospace small" rows="10" readonly id="json-copy-area">${jsonCode}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="Admin.copyToClipboard()">ก๊อปปี้รหัสและปิดหน้าต่างนี้</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    },
+
+    copyToClipboard() {
+        const area = document.getElementById('json-copy-area');
+        area.select();
+        document.execCommand('copy');
+        alert('ก๊อปปี้รหัสเรียบร้อย! ส่งให้จาวิชในแชทได้เลยครับ');
+        document.getElementById('sync-modal').remove();
     },
 
     logout() { sessionStorage.removeItem('admin_logged_in'); location.reload(); }
