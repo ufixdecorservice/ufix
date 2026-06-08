@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยูฟิกซ์ เดคอร์ เซอร์วิส | ซ่อมแซมและบำรุงรักษาอาคารครบวงจร</title>
+    <meta name="description" content="บริการซ่อมแซมอาคาร แก้ไขน้ำรั่วซึม ซ่อมรอยร้าว งานโรยตัวอาคารสูง ทาสีอาคาร และบำรุงรักษาอาคารครบวงจร">
+    
+    <!-- SEO -->
+    <meta property="og:title" content="ยูฟิกซ์ เดคอร์ เซอร์วิส">
+    <meta property="og:description" content="ซ่อมแซมและบำรุงรักษาอาคารครบวงจร">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://yourdomain.com/">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#002E6D">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="" alt="Ufix Decor Logo" id="site-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home" data-i18n="nav_home">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav_about">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services" data-i18n="nav_services">บริการ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio" data-i18n="nav_portfolio">ผลงาน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog" data-i18n="nav_blog">บทความ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">ติดต่อเรา</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-primary" onclick="I18n.setLang('th')">TH</button>
+                            <button class="btn btn-outline-primary" onclick="I18n.setLang('en')">EN</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <h1 id="hero-title" class="display-3 mb-4" data-aos="fade-down">...</h1>
+            <p id="hero-desc" class="lead mb-5" data-aos="fade-up">...</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="#contact" class="btn btn-accent btn-lg me-3" data-i18n="cta_quote">ขอใบเสนอราคา</a>
+                <a href="#about" class="btn btn-outline-light btn-lg" data-i18n="cta_learn_more">รู้จักเรา</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" class="img-fluid rounded shadow" alt="About Ufix">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="section-title text-start mb-4">
+                        <h2 data-i18n="section_about_title">เกี่ยวกับเรา</h2>
+                    </div>
+                    <p data-i18n="about_desc"><strong>บริษัท ยูฟิกซ์ เดคอร์ เซอร์วิส จำกัด</strong> เป็นผู้เชี่ยวชาญด้านงานวิศวกรรมอาคารและการบำรุงรักษาครบวงจร ด้วยประสบการณ์ที่ยาวนานและทีมงานมืออาชีพ เรามุ่งมั่นส่งมอบงานที่มีคุณภาพและมาตรฐานความปลอดภัยสูงสุด</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-accent me-2"></i> <span data-i18n="about_list_1">งานโรยตัวอาคารสูง (Rope Access)</span></li>
+                        <li><i class="fas fa-check-circle text-accent me-2"></i> <span data-i18n="about_list_2">ระบบกันซึมและซ่อมรอยร้าว (Waterproofing)</span></li>
+                        <li><i class="fas fa-check-circle text-accent me-2"></i> <span data-i18n="about_list_3">งานทาสีและรีโนเวทอาคาร</span></li>
+                        <li><i class="fas fa-check-circle text-accent me-2"></i> <span data-i18n="about_list_4">งานระบบไฟฟ้าและประปา</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section-bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="section_services_title">บริการของเรา</h2>
+            </div>
+            <div class="row" id="services-grid">
+                <!-- Services Rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="section_why_title">ทำไมต้องเลือกเรา</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="p-4">
+                        <i class="fas fa-hard-hat fa-3x text-accent mb-3"></i>
+                        <h4 data-i18n="why_pro_title">ทีมงานมืออาชีพ</h4>
+                        <p class="text-muted" data-i18n="why_pro_desc">ทีมงานวิศวกรและช่างผู้ชำนาญการ</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4">
+                        <i class="fas fa-shield-alt fa-3x text-accent mb-3"></i>
+                        <h4 data-i18n="why_safety_title">มาตรฐานความปลอดภัย</h4>
+                        <p class="text-muted" data-i18n="why_safety_desc">ปลอดภัย 100% ในทุกขั้นตอน</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4">
+                        <i class="fas fa-clock fa-3x text-accent mb-3"></i>
+                        <h4 data-i18n="why_time_title">ตรงต่อเวลา</h4>
+                        <p class="text-muted" data-i18n="why_time_desc">ส่งมอบงานตามกำหนดการที่ชัดเจน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section-bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="section_portfolio_title">ผลงานของเรา</h2>
+            </div>
+            <div class="row" id="portfolio-grid">
+                <!-- Portfolio Rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="section_blog_title">บทความน่ารู้</h2>
+            </div>
+            <div class="row" id="blog-grid">
+                <!-- Blog Rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-i18n="section_contact_title">ติดต่อเรา</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 mb-4" data-aos="fade-right">
+                    <div class="card p-4 h-100">
+                        <h4 class="mb-4" data-i18n="contact_info_title">ข้อมูลติดต่อ</h4>
+                        <p><i class="fas fa-map-marker-alt text-accent me-3"></i> <span id="contact-address">...</span></p>
+                        <p><i class="fas fa-phone text-accent me-3"></i> <span id="contact-phone">...</span></p>
+                        <p><i class="fas fa-envelope text-accent me-3"></i> <span id="contact-email">...</span></p>
+                        <p><i class="fab fa-line text-accent me-3"></i> <span id="contact-line">...</span></p>
+                        <div class="mt-4">
+                            <iframe id="google-map" width="100%" height="250" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="card p-4 h-100">
+                        <h4 class="mb-4" data-i18n="contact_form_title">ส่งข้อความหาเรา</h4>
+                        <form id="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="name" class="form-control" placeholder="ชื่อ-นามสกุล" data-i18n-placeholder="form_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="อีเมล" data-i18n-placeholder="form_email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" name="phone" class="form-control" placeholder="เบอร์โทรศัพท์" data-i18n-placeholder="form_phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea name="message" class="form-control" rows="5" placeholder="ข้อความ" data-i18n-placeholder="form_message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" data-i18n="form_submit">ส่งข้อความ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4">Ufix Decor Service</h5>
+                    <p class="small text-muted" data-i18n="footer_desc">...</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4" data-i18n="footer_menu">เมนู</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="#home" class="text-muted text-decoration-none" data-i18n="nav_home">หน้าแรก</a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none" data-i18n="nav_about">เกี่ยวกับเรา</a></li>
+                        <li><a href="#services" class="text-muted text-decoration-none" data-i18n="nav_services">บริการ</a></li>
+                        <li><a href="#portfolio" class="text-muted text-decoration-none" data-i18n="nav_portfolio">ผลงาน</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-4" data-i18n="footer_legal">กฎหมาย</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="javascript:void(0)" onclick="PDPA.openLegal('privacy')" class="text-muted text-decoration-none" data-i18n="footer_privacy">นโยบายความเป็นส่วนตัว</a></li>
+                        <li><a href="javascript:void(0)" onclick="PDPA.openLegal('terms')" class="text-muted text-decoration-none" data-i18n="footer_terms">ข้อกำหนดและเงื่อนไข</a></li>
+                        <li><a href="javascript:void(0)" onclick="PDPA.openLegal('cookie')" class="text-muted text-decoration-none" data-i18n="footer_cookie_policy">นโยบายคุกกี้</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="text-center small text-muted">
+                &copy; 2026 Ufix Decor Service Co., Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-btns d-none d-md-block">
+        <a href="tel:0849967957" class="float-btn btn-call"><i class="fas fa-phone"></i></a>
+        <a href="https://line.me/ti/p/@Ufix.service01" target="_blank" class="float-btn btn-line"><i class="fab fa-line"></i></a>
+        <a href="#home" class="float-btn btn-top"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <!-- Mobile Sticky Bar -->
+    <div class="mobile-sticky-bar">
+        <a href="tel:0849967957" class="sticky-item"><i class="fas fa-phone"></i><span>Call</span></a>
+        <a href="https://line.me/ti/p/@Ufix.service01" class="sticky-item"><i class="fab fa-line"></i><span>LINE</span></a>
+        <a href="mailto:ufixdecor.service21@gmail.com" class="sticky-item"><i class="fas fa-envelope"></i><span>Email</span></a>
+        <a href="#contact" class="sticky-item"><i class="fas fa-quote-right"></i><span>Quote</span></a>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner">
+        <h5 data-i18n="cookie_title">ความพึงพอใจของคุณ</h5>
+        <p class="small text-muted" data-i18n="cookie_desc">เราใช้คุกกี้เพื่อพัฒนาประสิทธิภาพการใช้งานเว็บไซต์...</p>
+        <div class="d-flex gap-2">
+            <button id="cookie-accept-all" class="btn btn-primary btn-sm" data-i18n="cookie_accept">ยอมรับ</button>
+            <button id="cookie-reject" class="btn btn-outline-secondary btn-sm" data-i18n="cookie_reject">ปฏิเสธ</button>
+        </div>
+    </div>
+
+    <!-- Legal Modal -->
+    <div class="modal fade" id="legalModal" tabindex="-1" aria-labelledby="legalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="legalModalLabel">...</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="legalModalBody">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/pdpa.js"></script>
+    <script src="assets/js/portfolio.js"></script>
+    <script src="assets/js/blog.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
