@@ -8,7 +8,7 @@ os.makedirs(image_dir, exist_ok=True)
 
 # อัปเดตและจัดระบบรูปภาพ Unsplash ใหม่ให้พรีเมียมและสวยงาม
 image_mappings = {
-    # 1. หน้าแรก Hero section bg เปลี่ยนเป็นรูปตึกกระจกสะท้อนฟ้าสีน้ำเงิน อลังการ พรีเมียม เหมาะกับงานดูแลอาคารครบวงจร
+    # 1. หน้าแรก Hero section bg
     "hero_bg.jpg": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1920",
     
     # 2. รูปหน้าเกี่ยวกับเรา (คนงานก่อสร้าง)
@@ -17,14 +17,17 @@ image_mappings = {
     # 3. รูปบริการงานกระเบื้องและตกแต่งภายใน
     "tiling_interior.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
     
-    # 4. รูปบริการงานทำถนนและปรับปรุงผิวจราจร (ใช้รูปเครื่องจักร/รถตักที่หน้างานทำถนนยางมะตอย ซึ่งเข้ากับหัวข้อที่สุดและไม่ซ้ำ)
+    # 4. รูปบริการงานทำถนนและปรับปรุงผิวจราจร (รูปเครื่องจักรทำถนน)
     "road_paving.jpg": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800",
     
     # 5. รูปบทความกฎหมายอาคาร
     "building_laws.jpg": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800",
     
     # 6. รูปผลงานในพอร์ต (ตึกสูงกระจกสะท้อนฟ้า)
-    "portfolio_highrise.jpg": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+    "portfolio_highrise.jpg": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+    
+    # 7. รูปบริการงานทาสีและรีโนเวท (ช่างทาสีผนัง/ทาสีบ้าน เพื่อไม่ให้ซ้ำกับรูปผลงานทาสีอาคารพาณิชย์)
+    "service_painting.jpg": "https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&q=80&w=800"
 }
 
 headers = {
@@ -53,15 +56,10 @@ if os.path.exists(html_path):
         content = file.read()
     
     # แทนที่รูปภาพใน HTML ให้ชี้ไปยัง local file ทั้งหมด
-    # 1. Hero Background (เปลี่ยนลิงก์เดิมที่เคยใช้ photo-1541888946425-d81bb19240f5 มาเป็น assets/images/hero_bg.jpg)
+    # 1. Hero Background
     content = content.replace(
         "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1920",
         "assets/images/hero_bg.jpg"
-    )
-    # ในกรณีที่รันสคริปต์ก่อนหน้านี้ไปแล้ว และ url ถูกเปลี่ยนไปบ้างแล้ว เราจะรีเซ็ตและแทนที่ให้สมบูรณ์
-    content = content.replace(
-        "assets/images/hero_bg.jpg",
-        "assets/images/hero_bg.jpg" # ประกันความชัวร์
     )
     
     # 2. About Image
@@ -76,14 +74,12 @@ if os.path.exists(html_path):
         "assets/images/tiling_interior.jpg"
     )
     
-    # 4. Road Image (เดิมเคยเป็นโบสถ์ หรือถูกแทนที่ไปก่อนหน้านี้)
-    # แทนที่ URL ของโบสถ์ (ถ้ามีหลงเหลือ)
+    # 4. Road Image
     content = re.sub(
         r'https://images\.unsplash\.com/photo-1515162305285-0293e4767cc2[^\'"\s>]*',
         'assets/images/road_paving.jpg',
         content
     )
-    # หากเคยถูกแทนที่ด้วย road_paving.jpg หรือสิ่งอื่นไปแล้ว ก็ให้มั่นใจว่าเป็น assets/images/road_paving.jpg
     
     # 5. Building Laws
     content = content.replace(
@@ -95,6 +91,17 @@ if os.path.exists(html_path):
     content = content.replace(
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
         "assets/images/portfolio_highrise.jpg"
+    )
+    
+    # 7. บริการงานทาสีและรีโนเวท (เปลี่ยนจาก assets/images/portfolio_painting.png ไปเป็น assets/images/service_painting.jpg ในส่วนของการ์ดบริการ เพื่อไม่ให้ซ้ำกับในผลงาน)
+    # เราจะหา tag img บริการงานทาสีโดยตรง
+    # รูปภาพงานโรยตัว = assets/images/rope_access.png
+    # รูปภาพระบบกันซึม = assets/images/waterproofing.png
+    # รูปภาพงานทาสีบริการ = assets/images/portfolio_painting.png (ซึ่งซ้ำ เราจะเปลี่ยนรูปนี้รูปเดียวในการ์ดบริการ)
+    # สังเกตว่าใน HTML บรรทัด 230 คือ: <img src="assets/images/portfolio_painting.png" class="card-img-top service-img" alt="งานทาสี">
+    content = content.replace(
+        '<img src="assets/images/portfolio_painting.png" class="card-img-top service-img" alt="งานทาสี">',
+        '<img src="assets/images/service_painting.jpg" class="card-img-top service-img" alt="งานทาสี">'
     )
     
     with open(html_path, 'w', encoding='utf-8') as file:
