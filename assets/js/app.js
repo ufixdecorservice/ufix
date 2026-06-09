@@ -7,6 +7,7 @@ const App = {
         this.initMobileNavbar();
         this.initLangSwitch();
         this.initPDPA();
+        this.initContactForm();
     },
 
     initPDPA() {
@@ -81,6 +82,83 @@ const App = {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
                     if (bsCollapse) bsCollapse.hide();
                 }
+            });
+        });
+    },
+
+    initContactForm() {
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = this.lang === 'th' 
+                ? '<i class="fas fa-spinner fa-spin me-2"></i>กำลังส่งข้อความ...' 
+                : '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                // Show success UI with AOS animation
+                const successHtml = this.lang === 'th'
+                    ? `
+                    <div class="text-center py-5" data-aos="fade-up">
+                        <div class="mb-4 text-success" style="font-size: 4rem;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="text-success mb-3">ส่งข้อความสำเร็จ!</h4>
+                        <p class="text-muted mb-4">ขอบคุณที่ติดต่อเรา เจ้าหน้าที่ของเราจะติดต่อกลับหาคุณโดยเร็วที่สุด</p>
+                        <button class="btn btn-outline-primary btn-sm" onclick="location.reload()">ส่งข้อความใหม่</button>
+                    </div>
+                    `
+                    : `
+                    <div class="text-center py-5" data-aos="fade-up">
+                        <div class="mb-4 text-success" style="font-size: 4rem;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="text-success mb-3">Message Sent Successfully!</h4>
+                        <p class="text-muted mb-4">Thank you for contacting us. Our representative will get back to you shortly.</p>
+                        <button class="btn btn-outline-primary btn-sm" onclick="location.reload()">Send Another Message</button>
+                    </div>
+                    `;
+                
+                // Replace card contents with success UI
+                const card = form.closest('.card');
+                if (card) {
+                    card.innerHTML = successHtml;
+                    if (typeof AOS !== 'undefined') AOS.refresh();
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                // Show error message
+                alert(this.lang === 'th' 
+                    ? 'เกิดข้อผิดพลาดในการส่งข้อความ กรุณาลองใหม่อีกครั้ง หรือติดต่อทาง LINE: @Ufix.service01' 
+                    : 'Error sending message. Please try again or contact us via LINE: @Ufix.service01');
+                
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
             });
         });
     }
