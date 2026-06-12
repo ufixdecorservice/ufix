@@ -8,6 +8,7 @@ const App = {
         this.initLangSwitch();
         this.initPDPA();
         this.initContactForm();
+        this.initAnnouncementPopup();
     },
 
     initPDPA() {
@@ -161,6 +162,39 @@ const App = {
                 submitBtn.innerHTML = originalBtnHtml;
             });
         });
+    },
+
+    initAnnouncementPopup() {
+        const popupImageUrl = 'assets/images/popup/announcement.jpg';
+        const img = new Image();
+        
+        img.onload = () => {
+            console.log("Announcement image loaded successfully. Showing popup...");
+            const popupHTML = `
+                <div id="dynamicPopup" class="modal fade" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0 bg-transparent">
+                            <div class="modal-body p-0 position-relative text-center">
+                                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1060; filter: drop-shadow(0 0 5px rgba(0,0,0,0.8)); opacity: 1;"></button>
+                                <img src="${popupImageUrl}" class="img-fluid rounded shadow-lg" alt="Announcement" style="max-height: 90vh; width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
+            const popupEl = document.getElementById('dynamicPopup');
+            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const modal = new bootstrap.Modal(popupEl);
+                modal.show();
+            }
+        };
+
+        img.onerror = () => {
+            console.log("No announcement image found at: " + popupImageUrl);
+        };
+
+        img.src = popupImageUrl + '?t=' + new Date().getTime();
     }
 };
 
