@@ -1,6 +1,6 @@
-# Ufix Decor Service Website
+# U Fixdecor Service Website
 
-A production-ready premium single-page website for **Ufix Decor Service Co., Ltd.** designed with high performance, PWA capabilities, and a Serverless CMS.
+A production-ready premium single-page website for **U Fixdecor Service Co., Ltd.** designed with high performance, PWA capabilities, and a Serverless CMS.
 
 ## 🛠️ Tech Stack
 - **Frontend**: HTML5, CSS3, Bootstrap 5, FontAwesome 6, AOS (Animate on Scroll)

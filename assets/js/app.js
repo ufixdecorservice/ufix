@@ -90,6 +90,20 @@ const App = {
         });
     },
 
+    updateFileName(input) {
+        const display = document.getElementById('file-name-display');
+        if (input.files.length > 0) {
+            display.textContent = input.files[0].name;
+            display.classList.replace('text-muted', 'text-dark');
+        } else {
+            display.innerHTML = `
+                <span class="lang-th">ไม่ได้เลือกไฟล์ใด</span>
+                <span class="lang-en">No file chosen</span>
+            `;
+            display.classList.replace('text-dark', 'text-muted');
+        }
+    },
+
     initContactForm() {
         const form = document.getElementById('contactForm');
         if (!form) return;
@@ -313,7 +327,7 @@ const App = {
 
             const slide = `
                 <div class="swiper-slide">
-                    <a href="${fullResUrl}" class="glightbox" data-gallery="portfolio" data-title="${img.name}" data-type="image">
+                    <a href="${fullResUrl}" class="glightbox" data-gallery="portfolio" data-title="" data-type="image">
                         <div class="gallery-img-container">
                             <img src="${thumbUrl}" alt="${img.name}" class="img-fluid rounded shadow-sm" 
                                  onerror="this.src='https://placehold.co/600x400?text=Image+Access+Error'">
@@ -334,7 +348,9 @@ const App = {
             touchNavigation: true,
             loop: true,
             zoomable: true,
-            draggable: true
+            draggable: true,
+            title: false,
+            description: false
         });
     },
 
@@ -345,10 +361,7 @@ const App = {
             slidesPerView: 1,
             spaceBetween: 20,
             loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
+            pagination: false,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",

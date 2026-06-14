@@ -1,6 +1,6 @@
 {
-  "name": "Ufix Decor Service",
-  "short_name": "Ufix Decor",
+  "name": "U Fixdecor Service",
+  "short_name": "U Fixdecor",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#002E6D",
