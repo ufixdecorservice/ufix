@@ -643,6 +643,7 @@
             });
 
             const getName = (id) => document.querySelector(`[data-id="${id}"]`) ? document.querySelector(`[data-id="${id}"]`).innerText : "ไม่ได้ระบุ";
+            const sigData = document.getElementById('img-req').src; // Get signature dataURL
 
             return `
 ================================
@@ -661,6 +662,9 @@ RFQ / PURCHASE REQUISITION
 ${items}
 
 # หมายเหตุ : รายการข้างต้นเป็นรายการขอเสนอราคาเพื่อพิจารณาอนุมัติจัดซื้อ
+
+# ลายเซ็นผู้ขอราคา:
+${sigData}
 `;
         }
 
