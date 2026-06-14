@@ -1,5 +1,8 @@
 const App = {
     lang: localStorage.getItem('ufix_lang') || 'th',
+    gasUrl: 'https://script.google.com/macros/s/AKfycbwyrEKGVDt4wb_VGbncgKbIRVPwuzqm-EWHSBB29Ol47RmuNNb4UX-3jdBigKbTUSm9nQ/exec',
+    swiper: null,
+    lightbox: null,
 
     init() {
         this.applyLang();
@@ -91,7 +94,7 @@ const App = {
         const form = document.getElementById('contactForm');
         if (!form) return;
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -100,10 +103,25 @@ const App = {
             // Show loading state
             submitBtn.disabled = true;
             submitBtn.innerHTML = this.lang === 'th' 
-                ? '<i class="fas fa-spinner fa-spin me-2"></i>กำลังส่งข้อความ...' 
-                : '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+                ? '<i class="fas fa-spinner fa-spin me-2"></i>กำลังประมวลผลและส่งข้อความ...' 
+                : '<i class="fas fa-spinner fa-spin me-2"></i>Processing & Sending...';
 
             const formData = new FormData(form);
+            const fileInput = document.getElementById('attachment');
+            
+            // Handle Image Resizing if file exists
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.type.startsWith('image/')) {
+                    try {
+                        const resizedBlob = await this.processImage(file, 350 * 1024); // Target 350KB
+                        formData.set('attachment', resizedBlob, file.name);
+                    } catch (err) {
+                        console.error('Image processing error:', err);
+                        // If error, continue with original file
+                    }
+                }
+            }
 
             fetch(form.action, {
                 method: form.method,
@@ -164,6 +182,56 @@ const App = {
         });
     },
 
+    // --- Image Processing Helper ---
+    processImage(file, targetSize) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    // Step 1: Resize dimensions if too large (Max 1200px)
+                    const maxDim = 1200;
+                    if (width > maxDim || height > maxDim) {
+                        if (width > height) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        } else {
+                            width *= maxDim / height;
+                            height = maxDim;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Step 2: Adjust quality to hit target size
+                    let quality = 0.9;
+                    const iterate = () => {
+                        canvas.toBlob((blob) => {
+                            if (blob.size <= targetSize || quality <= 0.1) {
+                                resolve(blob);
+                            } else {
+                                quality -= 0.1;
+                                iterate();
+                            }
+                        }, 'image/jpeg', quality);
+                    };
+                    iterate();
+                };
+                img.onerror = reject;
+            };
+            reader.onerror = reject;
+        });
+    },
+
     initAnnouncementPopup() {
         const popupImageUrl = 'assets/images/popup/announcement.jpg';
         const img = new Image();
@@ -195,6 +263,112 @@ const App = {
         };
 
         img.src = popupImageUrl + '?t=' + new Date().getTime();
+    },
+
+    // --- Portfolio Gallery Logic ---
+    loadGallery(folderId, element) {
+        const container = document.getElementById('gallery-container');
+        const loader = document.getElementById('gallery-loader');
+        const content = document.getElementById('gallery-content');
+        
+        // Show container and loader
+        container.classList.remove('d-none');
+        loader.classList.remove('d-none');
+        content.classList.add('d-none');
+
+        // Scroll to gallery
+        setTimeout(() => {
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+
+        // Fetch images from GAS
+        fetch(`${this.gasUrl}?id=${folderId}`)
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === 'success' && res.data.length > 0) {
+                    this.renderGallery(res.data);
+                    loader.classList.add('d-none');
+                    content.classList.remove('d-none');
+                    this.initSwiper();
+                } else {
+                    alert(this.lang === 'th' ? 'ไม่พบรูปภาพในโฟลเดอร์นี้' : 'No images found in this folder.');
+                    this.closeGallery();
+                }
+            })
+            .catch(err => {
+                console.error('Gallery Error:', err);
+                alert(this.lang === 'th' ? 'เกิดข้อผิดพลาดในการโหลดรูปภาพ' : 'Error loading images.');
+                this.closeGallery();
+            });
+    },
+
+    renderGallery(images) {
+        const wrapper = document.getElementById('swiper-wrapper');
+        wrapper.innerHTML = '';
+
+        images.forEach(img => {
+            // ใช้ลิงก์ Thumbnail ความละเอียดสูง (1600px) สำหรับการขยายภาพ
+            const fullResUrl = `https://drive.google.com/thumbnail?id=${img.id}&sz=w1600`;
+            const thumbUrl = `https://drive.google.com/thumbnail?id=${img.id}&sz=w1000`;
+
+            const slide = `
+                <div class="swiper-slide">
+                    <a href="${fullResUrl}" class="glightbox" data-gallery="portfolio" data-title="${img.name}" data-type="image">
+                        <div class="gallery-img-container">
+                            <img src="${thumbUrl}" alt="${img.name}" class="img-fluid rounded shadow-sm" 
+                                 onerror="this.src='https://placehold.co/600x400?text=Image+Access+Error'">
+                            <div class="gallery-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+            wrapper.insertAdjacentHTML('beforeend', slide);
+        });
+
+        // Initialize GLightbox
+        if (this.lightbox) this.lightbox.destroy();
+        this.lightbox = GLightbox({ 
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true,
+            draggable: true
+        });
+    },
+
+    initSwiper() {
+        if (this.swiper) this.swiper.destroy();
+        
+        this.swiper = new Swiper(".portfolioSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    },
+
+    closeGallery() {
+        const container = document.getElementById('gallery-container');
+        container.classList.add('d-none');
+        // Scroll back to portfolio section
+        document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
     }
 };
 
