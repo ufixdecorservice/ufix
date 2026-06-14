@@ -304,10 +304,10 @@
             </div>
             <div class="info-section">
                 <h3>ผู้ขอราคา (Requested By)</h3>
-                <div class="info-row"><div class="info-label">ลูกค้า/บริษัท:</div><div class="info-value editable-field" data-id="r-name" contenteditable="true"></div></div>
-                <div class="info-row"><div class="info-label">ผู้ขอ (ชื่อจริง):</div><div class="info-value editable-field" data-id="r-contact" contenteditable="true"></div></div>
+                <div class="info-row"><div class="info-label">ชื่อ:</div><div class="info-value editable-field" data-id="r-contact" contenteditable="true"></div></div>
+                <div class="info-row"><div class="info-label">ที่อยู่:</div><div class="info-value editable-field" data-id="r-addr" contenteditable="true"></div></div>
                 <div class="info-row"><div class="info-label">โทรศัพท์:</div><div class="info-value editable-field" data-id="r-tel" contenteditable="true"></div></div>
-                <div class="info-row"><div class="info-label">โครงการ:</div><div class="info-value editable-field" data-id="r-project" contenteditable="true"></div></div>
+                <div class="info-row"><div class="info-label">อีเมล:</div><div class="info-value editable-field" data-id="r-email" contenteditable="true"></div></div>
             </div>
         </div>
 
@@ -598,7 +598,7 @@
             const emailBody = buildRFQEmail(docNo);
             const formData = new FormData();
             formData.append("_subject", "RFQ ใหม่ - " + docNo);
-            formData.append("_template", "plain");
+            formData.append("_template", "table"); // Revert to table
             formData.append("message", emailBody);
 
             // Timeout mechanism (5 seconds)

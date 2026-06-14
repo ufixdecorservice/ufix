@@ -571,29 +571,6 @@
                             <div class="mb-3">
                                 <textarea name="message" class="form-control" rows="5" placeholder="ข้อความ / Message" required></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label small text-muted">
-                                    <span class="lang-th">แนบรูปภาพประกอบ (ถ้ามี)</span>
-                                    <span class="lang-en">Attach an image (Optional)</span>
-                                </label>
-                                <div class="custom-file-upload-wrapper">
-                                    <input type="file" id="attachment" name="attachment" style="display: none;" accept="image/*" onchange="App.updateFileName(this)">
-                                    <div class="input-group">
-                                        <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('attachment').click()">
-                                            <span class="lang-th">เลือกไฟล์</span>
-                                            <span class="lang-en">Choose File</span>
-                                        </button>
-                                        <div class="form-control text-muted small d-flex align-items-center" id="file-name-display" style="background: #f8f9fa;">
-                                            <span class="lang-th">ไม่ได้เลือกไฟล์ใด</span>
-                                            <span class="lang-en">No file chosen</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-text small" style="font-size: 0.75rem;">
-                                    <span class="lang-th">*ระบบจะลดขนาดภาพอัตโนมัติเพื่อความรวดเร็วในการส่ง</span>
-                                    <span class="lang-en">*Image will be automatically resized for faster sending.</span>
-                                </div>
-                            </div>
                             <button type="submit" class="btn btn-primary w-100">
                                 <span class="lang-th">ส่งข้อความ</span><span class="lang-en">Send Message</span>
                             </button>
