@@ -569,15 +569,18 @@
         function sendRFQ() {
             if (isSubmitting) return;
 
-            const name = document.querySelector('[data-id="r-name"]').innerText.trim();
             const contact = document.querySelector('[data-id="r-contact"]').innerText.trim();
+            const addr = document.querySelector('[data-id="r-addr"]').innerText.trim();
             const tel = document.querySelector('[data-id="r-tel"]').innerText.trim();
+            const email = document.querySelector('[data-id="r-email"]').innerText.trim();
             const desc = document.getElementById('itemsBody').innerText.trim();
 
-            if (!name || !contact || !tel || !desc) {
-                alert("กรุณาตรวจสอบข้อมูลให้ครบถ้วน: ชื่อลูกค้า, ผู้ติดต่อ, เบอร์โทร และรายละเอียดงาน");
+            // ตรวจสอบข้อมูลบังคับที่จำเป็น
+            if (!contact || !addr || !tel || !email || desc === "ระบุบริการของคุณที่นี่...") {
+                alert("กรุณาตรวจสอบข้อมูลให้ครบถ้วน: ชื่อ, ที่อยู่, เบอร์โทร, อีเมล และรายละเอียดงาน");
                 return;
             }
+
 
             // Generate unique document number
             const docNo = "RFQ" + new Date().toISOString().slice(0, 10).replace(/-/g, "") + Math.floor(Math.random() * 1000);
